@@ -16,7 +16,8 @@
   </div>
   <div class="flex-panel__scroll">
     <section class="title-panel">
-      <div class="applicant-name">{{application['applicants'] | titlecase}}</div>
+      <!-- <div TODO - Marcelo class="applicant-name">{{application['applicants'] | titlecase}}</div> -->
+      <div class="applicant-name">{{application['client'] | titlecase}}</div>
       <div class="application-purpose">{{application.purpose | titlecase}} - {{application.subpurpose | titlecase}}</div>
     </section>
     <div class="app-detail-info">
@@ -60,7 +61,7 @@
         <ul class="meta-container">
           <li>
             <div class="key">Applicant(s):</div>
-            <div class="value">{{application['applicants'] | titlecase}}</div>
+            <div class="value">{{application['client'] | titlecase}}</div>
           </li>
           <li>
             <div class="key">Disposition Transaction:</div>

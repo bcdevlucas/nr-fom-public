@@ -17,6 +17,7 @@ import { Application } from 'app/models/application';
 import { ApplicationService, IFiltersType } from 'app/services/application.service';
 import { UrlService } from 'app/services/url.service';
 import { Panel } from './utils/panel.enum';
+import { singleApplicationStubArray } from './stubs/application-stub';
 
 /**
  * Object emitted by child panel on update.
@@ -230,7 +231,7 @@ export class ApplicationsComponent implements OnInit, AfterViewInit, OnDestroy {
    * @param {boolean} [getTotalNumber=true]
    * @memberof ApplicationsComponent
    */
-  public getApplications(getTotalNumber: boolean = false) {
+  public getApplications(getTotalNumber: boolean = true) {
     console.log("inside getApplications");
     // do this in another event so it's not in current change detection cycle
     setTimeout(() => {
@@ -245,18 +246,23 @@ export class ApplicationsComponent implements OnInit, AfterViewInit, OnDestroy {
 
       if (getTotalNumber) {
         // get total number using filters (but not coordinates)
-        this.applicationService
-          .getCount(this.filters, null)
-          .pipe(operators.takeUntil(this.ngUnsubscribe))
-          .subscribe(count => {
-            this.totalNumber = count;
-          });
+        //TODO - Marcelo commented this out and is setting totalNumber to 1
+        this.totalNumber = 1;
+        // this.applicationService
+        //   .getCount(this.filters, null)
+        //   .pipe(operators.takeUntil(this.ngUnsubscribe))
+        //   .subscribe(count => {
+        //     this.totalNumber = count;
+        //   });
       }
 
       // get latest coordinates
       this.coordinates = this.appmap.getCoordinates();
+
       
-      //Added by Marcelo to stop refreshing of application service
+    //TODO - Marcelo added this  
+    this.apps = singleApplicationStubArray;
+      //TODO -Added by Marcelo to stop refreshing of application service
       if( false) {
       this.applicationService
         .getCount(this.filters, this.coordinates)

@@ -14,6 +14,9 @@ import { FeatureService } from './feature.service';
 import { StatusCodes, ReasonCodes } from 'app/utils/constants/application';
 import { ConstantUtils, CodeType } from 'app/utils/constants/constantUtils';
 import { CommentCodes } from 'app/utils/constants/comment';
+import { singleApplicationStub } from 'app/applications/stubs/application-stub';
+import { singleDocumentStubArray } from 'app/applications/stubs/document-stub';
+import { singleFeatureStubArray } from 'app/applications/stubs/feature-stub';
 
 /**
  * All supported filters.
@@ -256,6 +259,38 @@ export class ApplicationService {
       }),
       catchError(this.api.handleError)
     );
+  }
+//TODO - Marcelo
+  getByIdStub() {
+    this.application = singleApplicationStub;
+    // derive retire date
+    if (
+      this.application.statusHistoryEffectiveDate &&
+      [
+        StatusCodes.DECISION_APPROVED.code,
+        StatusCodes.DECISION_NOT_APPROVED.code,
+        StatusCodes.ABANDONED.code
+      ].includes(ConstantUtils.getCode(CodeType.STATUS, this.application.status))
+    ) {
+      this.application['retireDate'] = moment(this.application.statusHistoryEffectiveDate)
+        .endOf('day')
+        .add(6, 'months');
+    }
+
+    // 7-digit CL File number for display
+    if (this.application.cl_file) {
+      this.application['clFile'] = this.application.cl_file.toString().padStart(7, '0');
+    }
+
+    // derive unique applicants
+    if (this.application.client) {
+      const clients = this.application.client.split(', ');
+      this.application['applicants'] = _.uniq(clients).join(', ');
+    }
+
+    this.application.documents = singleDocumentStubArray;
+    this.application.features = singleFeatureStubArray;
+
   }
 
   /**

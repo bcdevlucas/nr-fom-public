@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+// import { takeUntil } from 'rxjs/operators';
 
 import { Application } from 'app/models/application';
 import { ApplicationService } from 'app/services/application.service';
 import { CommentPeriodService } from 'app/services/commentperiod.service';
 import { UrlService } from 'app/services/url.service';
 import { Panel } from 'app/applications/utils/panel.enum';
+import { singleApplicationStub } from 'app/applications/stubs/application-stub';
 
 @Component({
   templateUrl: './marker-popup.component.html',
@@ -25,10 +26,13 @@ export class MarkerPopupComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     // load complete application
-    this.applicationService
-      .getById(this.id, false)
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(value => (this.app = value), error => console.log(error));
+    this.app = singleApplicationStub;
+    this.id = "123456789"
+    //TODO - Marcelo commented this.
+    // this.applicationService
+    //   .getById(this.id, false)
+    //   .pipe(takeUntil(this.ngUnsubscribe))
+    //   .subscribe(value => (this.app = value), error => console.log(error));
   }
 
   public ngOnDestroy() {
