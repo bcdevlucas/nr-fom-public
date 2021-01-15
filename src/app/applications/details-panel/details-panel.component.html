@@ -12,13 +12,14 @@
 
 <div class="flex-panel" *ngIf="application">
   <div class="flex-panel__header">
-    <h2 class="title">Crown Land File: &nbsp; #{{(application && application['clFile']) || '-'}}</h2>
+    <h2 class="title">FSP: &nbsp; #{{(application && application['clFile']) || '-'}}</h2>
   </div>
   <div class="flex-panel__scroll">
     <section class="title-panel">
       <!-- <div TODO - Marcelo class="applicant-name">{{application['applicants'] | titlecase}}</div> -->
       <div class="applicant-name">{{application['client'] | titlecase}}</div>
-      <div class="application-purpose">{{application.purpose | titlecase}} - {{application.subpurpose | titlecase}}</div>
+      <!-- <div class="application-purpose">{{application.purpose | titlecase}} - {{application.subpurpose | titlecase}}</div> -->
+      <div class="application-purpose">Forest Operations Map - Cut Blocks and Road Sections</div>
     </section>
     <div class="app-detail-info">
       <section class="status-section">

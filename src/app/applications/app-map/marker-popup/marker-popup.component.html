@@ -4,11 +4,12 @@
 
 <div class="popup-content" *ngIf="app">
   <!-- TODO - Marcelo<div class="file-number">Crown Land File: {{app['clFile'] || '-'}}</div> -->
-  <div class="file-number">Crown Land File:{{app['cl_File'] || '-'}}</div>
+  <div class="file-number">FSP: {{app['cl_file'] || '-'}}</div>
 
   <!-- <div class="applicant-name">{{app['applicants'] | titlecase}}</div> -->
   <div class="applicant-name">{{app['client'] | titlecase}}</div>
-  <div class="purpose">{{app.purpose | titlecase}} - {{app.subpurpose | titlecase}}</div>
+  <!-- <div class="purpose">{{app.purpose | titlecase}} - {{app.subpurpose | titlecase}}</div> -->
+  <div class="purpose">Proposed Forest Operations Map</div>
 
   <ul class="status-container">
     <li class="app-status"

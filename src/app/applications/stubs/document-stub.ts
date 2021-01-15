@@ -9,8 +9,8 @@ export const singleDocumentStub: Document =
     "_application": "5be3605e21ad2500237d5e0f",
     "_decision": "5b22de2c0aefdc001950452b",
     "_comment": "5b0f6ef343cf9c0019391cec",
-    "documentFileName":"6406200_Referral_Maps.PDF",
-    "displayName": "6406200_Referral_Maps.PDF",
+    "documentFileName":"Proposed FOM_January_18_2021.PDF",
+    "displayName": "Proposed FOM January 18, 2021",
     "internalURL" : "./uploads/6383043941972836352.pdf",
     "internalMime": "application/pdf"
 });
@@ -22,8 +22,8 @@ export  const singleDocumentStubArray: Document[] =  [
     "_application": "5be3605e21ad2500237d5e0f",
     "_decision": "5b22de2c0aefdc001950452b",
     "_comment": "5b0f6ef343cf9c0019391cec",
-    "documentFileName":"6406200_Referral_Maps.PDF",
-    "displayName": "6406200_Referral_Maps.PDF",
+    "documentFileName":"Proposed FOM December 18, 2020",
+    "displayName": "Proposed FOM December 18, 2020",
     "internalURL" : "./uploads/6383043941972836352.pdf",
     "internalMime": "application/pdf"
       }),
@@ -33,8 +33,8 @@ export  const singleDocumentStubArray: Document[] =  [
     "_application": "5be3605e21ad2500237d5e0f",
     "_decision": "5b22de2c0aefdc001950452b",
     "_comment": "5b0f6ef343cf9c0019391cec",
-    "documentFileName":"6406200_Referral_Maps_2.PDF",
-    "displayName": "6406200_Referral_Maps_2.PDF",
+    "documentFileName":"Proposed FOM January 18, 2021",
+    "displayName": "Proposed FOM January 18, 2021",
     "internalURL" : "./uploads/6383043941972836322.pdf",
     "internalMime": "application/pdf"
       })
