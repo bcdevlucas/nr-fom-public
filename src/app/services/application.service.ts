@@ -260,7 +260,7 @@ export class ApplicationService {
       catchError(this.api.handleError)
     );
   }
-//TODO - Marcelo
+// TODO - Marcelo
   getByIdStub() {
     this.application = singleApplicationStub;
     // derive retire date

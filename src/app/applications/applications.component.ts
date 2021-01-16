@@ -232,7 +232,7 @@ export class ApplicationsComponent implements OnInit, AfterViewInit, OnDestroy {
    * @memberof ApplicationsComponent
    */
   public getApplications(getTotalNumber: boolean = true) {
-    console.log("inside getApplications");
+    console.log('inside getApplications');
     // do this in another event so it's not in current change detection cycle
     setTimeout(() => {
       // pre-empt existing observables execution
@@ -246,7 +246,7 @@ export class ApplicationsComponent implements OnInit, AfterViewInit, OnDestroy {
 
       if (getTotalNumber) {
         // get total number using filters (but not coordinates)
-        //TODO - Marcelo commented this out and is setting totalNumber to 1
+        // TODO - Marcelo commented this out and is setting totalNumber to 1
         this.totalNumber = 1;
         // this.applicationService
         //   .getCount(this.filters, null)
@@ -259,11 +259,10 @@ export class ApplicationsComponent implements OnInit, AfterViewInit, OnDestroy {
       // get latest coordinates
       this.coordinates = this.appmap.getCoordinates();
 
-      
-    //TODO - Marcelo added this  
+    // TODO - Marcelo added this
     this.apps = singleApplicationStubArray;
-      //TODO -Added by Marcelo to stop refreshing of application service
-      if( false) {
+      // TODO -Added by Marcelo to stop refreshing of application service
+      if (false) {
       this.applicationService
         .getCount(this.filters, this.coordinates)
         .pipe(operators.takeUntil(this.ngUnsubscribe))

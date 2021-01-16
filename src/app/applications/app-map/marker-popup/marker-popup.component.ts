@@ -27,8 +27,8 @@ export class MarkerPopupComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     // load complete application
     this.app = singleApplicationStub;
-    this.id = "123456789"
-    //TODO - Marcelo commented this.
+    this.id = '123456789';
+    // TODO - Marcelo commented this.
     // this.applicationService
     //   .getById(this.id, false)
     //   .pipe(takeUntil(this.ngUnsubscribe))

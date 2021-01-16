@@ -103,8 +103,8 @@ export class DetailsPanelComponent implements OnDestroy {
   //     );
   // }
 
-   /**
-    * TODO - Marcelo
+  /**
+   * TODO - Marcelo
    * Fetches an application based on its id.
    *
    * @memberof DetailsPanelComponent
