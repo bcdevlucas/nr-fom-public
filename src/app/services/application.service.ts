@@ -32,7 +32,6 @@ export interface IFiltersType {
   publishFrom?: Date;
   publishTo?: Date;
   cpStatuses?: string[];
-  purposes?: string[];
   appStatuses?: string[];
 }
 
@@ -73,10 +72,6 @@ export class ApplicationService {
     // None of these filters require manipulation or unique considerations
     const basicQueryParams: IQueryParamSet = {
       clidDtid: { value: filters && filters.clidDtid },
-      purposes: {
-        value:
-          filters && _.flatMap(filters.purposes, purposeCode => ConstantUtils.getCode(CodeType.PURPOSE, purposeCode))
-      },
       publishSince: { value: filters && filters.publishFrom ? filters.publishFrom.toISOString() : null },
       publishUntil: { value: filters && filters.publishTo ? filters.publishTo.toISOString() : null },
       coordinates: { value: coordinates }

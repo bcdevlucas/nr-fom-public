@@ -152,16 +152,6 @@ export class ApiService {
     if (params['applicant']) {
       queryString += `client=${encodeURIComponent(params['applicant'].value)}&`;
     }
-    if (params['purposes']) {
-      params['purposes'].value.forEach(
-        (purpose: string) => (queryString += `purpose[eq]=${encodeURIComponent(purpose)}&`)
-      );
-    }
-    if (params['subpurposes']) {
-      params['subpurposes'].value.forEach(
-        (subpurpose: string) => (queryString += `subpurpose[eq]=${encodeURIComponent(subpurpose)}&`)
-      );
-    }
     if (params['publishSince'] && params['publishSince'].value) {
       queryString += `publishDate[since]=${params['publishSince'].value}&`;
     }
@@ -219,11 +209,9 @@ export class ApiService {
       'location',
       'name',
       'publishDate',
-      'purpose',
       'status',
       'reason',
       'statusHistoryEffectiveDate',
-      'subpurpose',
       'subtype',
       'tantalisID',
       'tenureStage',
@@ -260,16 +248,6 @@ export class ApiService {
     }
     if (params['applicant'] && params['applicant'].value) {
       queryString += `client=${encodeURIComponent(params['applicant'].value)}&`;
-    }
-    if (params['purposes']) {
-      params['purposes'].value.forEach(
-        (purpose: string) => (queryString += `purpose[eq]=${encodeURIComponent(purpose)}&`)
-      );
-    }
-    if (params['subpurposes']) {
-      params['subpurposes'].value.forEach(
-        (subpurpose: string) => (queryString += `subpurpose[eq]=${encodeURIComponent(subpurpose)}&`)
-      );
     }
     if (params['publishSince'] && params['publishSince'].value) {
       queryString += `publishDate[since]=${params['publishSince'].value}&`;
@@ -322,11 +300,9 @@ export class ApiService {
       'location',
       'name',
       'publishDate',
-      'purpose',
       'status',
       'reason',
       'statusHistoryEffectiveDate',
-      'subpurpose',
       'subtype',
       'tantalisID',
       'tenureStage',

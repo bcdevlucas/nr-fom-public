@@ -47,7 +47,6 @@ const emptyFilters: IFiltersType = {
   publishFrom: null,
   publishTo: null,
   cpStatuses: [],
-  purposes: [],
   appStatuses: []
 };
 
@@ -449,7 +448,6 @@ export class ApplicationsComponent implements OnInit, AfterViewInit, OnDestroy {
     return (
       !_.isEmpty(this.filters.cpStatuses) ||
       !_.isEmpty(this.filters.appStatuses) ||
-      !_.isEmpty(this.filters.purposes) ||
       !!this.filters.clidDtid ||
       !!this.filters.publishFrom ||
       !!this.filters.publishTo

@@ -18,7 +18,6 @@
     <section class="title-panel">
       <!-- <div TODO - Marcelo class="applicant-name">{{application['applicants'] | titlecase}}</div> -->
       <div class="applicant-name">{{application['client'] | titlecase}}</div>
-      <!-- <div class="application-purpose">{{application.purpose | titlecase}} - {{application.subpurpose | titlecase}}</div> -->
       <div class="application-purpose">Forest Operations Map - Cut Blocks and Road Sections</div>
     </section>
     <div class="app-detail-info">
@@ -71,10 +70,6 @@
           <li>
             <div class="key">Tenure:</div>
             <div class="value">{{application.type | titlecase}} / {{application.subtype | titlecase}}</div>
-          </li>
-          <li>
-            <div class="key">Purpose/Subpurpose:</div>
-            <div class="value">{{application.purpose | titlecase}} / {{application.subpurpose | titlecase}}</div>
           </li>
           <li>
             <div class="key">Location:</div>
