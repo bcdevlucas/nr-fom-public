@@ -18,9 +18,7 @@ export const singleFeatureStub: Feature =
      }
     ,
     'properties': {
-        'INTRID_SID': 234565,
-        'TENURE_LEGAL_DESCRIPTION': 'ALL THAT UNSURVEYED CROWN LAND IN THE VICINITY OF SUSKWA, ' +
-        'CASSIAR DISTRICT, CONTAINING 9.185 HECTARES, MORE OR LESS.'
+        'INTRID_SID': 234565
     }
 });
 

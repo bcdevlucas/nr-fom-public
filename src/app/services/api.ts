@@ -214,7 +214,6 @@ export class ApiService {
       'statusHistoryEffectiveDate',
       'subtype',
       'tantalisID',
-      'tenureStage',
       'type'
     ];
 
@@ -305,7 +304,6 @@ export class ApiService {
       'statusHistoryEffectiveDate',
       'subtype',
       'tantalisID',
-      'tenureStage',
       'type'
     ];
     const queryString = 'application/' + id + '?fields=' + this.convertArrayIntoPipeString(fields);

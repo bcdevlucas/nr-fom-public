@@ -24,19 +24,6 @@ export class Feature {
     OBJECTID: number;
     RESPONSIBLE_BUSINESS_UNIT: string;
     SW_ANNO_CAD_DATA: any; // TODO: what type is this?
-    TENURE_AREA_DERIVATION: string;
-    TENURE_AREA_IN_HECTARES: number;
-    TENURE_DOCUMENT: string;
-    TENURE_EXPIRY: string; // TODO: convert to date?
-    TENURE_LEGAL_DESCRIPTION: string;
-    TENURE_LOCATION: string;
-    TENURE_PURPOSE: string;
-    TENURE_STAGE: string;
-    TENURE_STATUS: string;
-    TENURE_REASON: string;
-    TENURE_SUBPURPOSE: string;
-    TENURE_SUBTYPE: string;
-    TENURE_TYPE: string;
   };
 
   constructor(obj?: any) {
