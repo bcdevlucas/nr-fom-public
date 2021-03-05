@@ -22,8 +22,8 @@ export  const singleDocumentStubArray: Document[] =  [
     '_application': '5be3605e21ad2500237d5e0f',
     '_decision': '5b22de2c0aefdc001950452b',
     '_comment': '5b0f6ef343cf9c0019391cec',
-    'documentFileName': 'Proposed FOM December 18, 2020',
-    'displayName': 'Proposed FOM December 18, 2020',
+    'documentFileName': 'Public Notice December 18, 2020',
+    'displayName': 'Proposed FOM December 19, 2020',
     'internalURL' : './uploads/6383043941972836352.pdf',
     'internalMime': 'application/pdf'
       }),

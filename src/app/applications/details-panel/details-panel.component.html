@@ -12,7 +12,7 @@
 
 <div class="flex-panel" *ngIf="application">
   <div class="flex-panel__header">
-    <h2 class="title">FSP: &nbsp; #{{(application && application['clFile']) || '-'}}</h2>
+    <h2 class="title">FOM: &nbsp; #{{(application && application['clFile']) || '-'}}</h2>
   </div>
   <div class="flex-panel__scroll">
     <section class="title-panel">
@@ -33,7 +33,7 @@
             'unknown':         applicationService.isUnknown(application)
           }">
           <div>
-            <strong>{{applicationService.getStatusStringLong(application)}}</strong>
+            <strong>Proposed FOM</strong>
           </div>
         </div>
         <div class="status-msg status-highlight" *ngIf="application['retireDate']">
@@ -64,10 +64,6 @@
             <div class="value">{{application['client'] | titlecase}}</div>
           </li>
           <li>
-            <div class="key">Disposition Transaction:</div>
-            <div class="value">{{application.tantalisID || '-'}}</div>
-          </li>
-          <li>
             <div class="key">Location:</div>
             <div class="value">{{application.location}}</div>
           </li>
@@ -84,9 +80,9 @@
         </div>
       </section>
 
-      <section>
+      <!-- <section>
         <h3>Decision Information</h3>
-        <!-- NB: decision object and decision status are independent -->
+        NB: decision object and decision status are independent
         <div *ngIf="application.decision">
           <div *ngIf="application.decision.documents.length === 0">
             No decision documents are available.
@@ -112,7 +108,7 @@
             No decisions have been made for this application at this time.
           </ng-template>
         </div>
-      </section>
+      </section> -->
 
       <section>
         <h3>Geographic Shape Information <span>({{application.features.length > 1 ? application.features.length + " Shapes": application.features.length + " Shape"}})</span></h3>

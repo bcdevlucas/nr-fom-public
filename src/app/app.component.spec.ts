@@ -31,7 +31,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('span.navbar-brand__title').textContent).toContain(
-      'Forest Operations Map & Public Review and Comment'
+      'Forest Operations Map'
     );
   }));
 

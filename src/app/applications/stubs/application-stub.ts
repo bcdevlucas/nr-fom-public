@@ -11,8 +11,8 @@ import { Application } from 'app/models/application';
             -128.2898393371777,
             54.019088770013575
           ],
-        'cl_file': '6406200',
-        'clFile': '6406201',
+        'cl_file': '4506',
+        'clFile': '4506',
         'client': 'Licensee Forest company',
         '_createdBy': 'idir\\mmedeiro',
         'createdDate': '2021-01-10',
@@ -54,8 +54,8 @@ import { Application } from 'app/models/application';
             -128.2898393371777,
             54.019088770013575
           ],
-        'cl_file': 6406200,
-        'clFile': '6406201',
+        'cl_file': 4507,
+        'clFile': '4507',
         'client': 'Licensee Forest company1',
         '_createdBy': 'idir\\mmedeiro',
         'createdDate': '2021-01-10',
