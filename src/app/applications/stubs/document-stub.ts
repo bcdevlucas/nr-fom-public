@@ -33,8 +33,8 @@ export  const singleDocumentStubArray: Document[] =  [
     '_application': '5be3605e21ad2500237d5e0f',
     '_decision': '5b22de2c0aefdc001950452b',
     '_comment': '5b0f6ef343cf9c0019391cec',
-    'documentFileName': 'Proposed FOM January 18, 2021',
-    'displayName': 'Proposed FOM January 18, 2021',
+    'documentFileName': 'Proposed FOM January 19, 2021',
+    'displayName': 'Proposed FOM January 19, 2021',
     'internalURL' : './uploads/6383043941972836322.pdf',
     'internalMime': 'application/pdf'
       })
