@@ -18,7 +18,6 @@ import { ExplorePanelComponent } from './explore-panel/explore-panel.component';
 import { DateInputComponent } from './explore-panel/date-input/date-input.component';
 import { FindPanelComponent } from './find-panel/find-panel.component';
 import { SplashModalComponent } from './splash-modal/splash-modal.component';
-import { PurposeInfoModalComponent } from './purpose-info-modal/purpose-info-modal.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, NgbModule.forRoot(), RouterModule, SharedModule],
@@ -32,9 +31,8 @@ import { PurposeInfoModalComponent } from './purpose-info-modal/purpose-info-mod
     ExplorePanelComponent,
     DateInputComponent,
     FindPanelComponent,
-    SplashModalComponent,
-    PurposeInfoModalComponent
+    SplashModalComponent
   ],
-  entryComponents: [MarkerPopupComponent, SplashModalComponent, PurposeInfoModalComponent]
+  entryComponents: [MarkerPopupComponent, SplashModalComponent]
 })
 export class ApplicationsModule {}

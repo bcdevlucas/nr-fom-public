@@ -1,0 +1,10 @@
+version: '2'
+services:
+  fom-public:
+    image: maguiarr/fom-public:latest
+    build:
+      context: .
+    ports:
+      - "80:4300"
+    container_name: fom-public
+

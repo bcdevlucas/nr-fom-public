@@ -10,7 +10,6 @@ import { Application } from 'app/models/application';
 import { Document } from 'app/models/document';
 import { CommentPeriod } from 'app/models/commentperiod';
 import { Decision } from 'app/models/decision';
-import { Feature } from 'app/models/feature';
 
 describe('ApplicationService', () => {
   beforeEach(() => {
@@ -34,12 +33,6 @@ describe('ApplicationService', () => {
     decisionServiceSpy.getByApplicationId.and.returnValue(of(new Decision({ _id: 'IIIII' })));
 
     const featureServiceSpy = jasmine.createSpyObj('FeatureService', ['getByApplicationId']);
-    featureServiceSpy.getByApplicationId.and.returnValue(
-      of([
-        new Feature({ _id: 'FFFFF', properties: { TENURE_AREA_IN_HECTARES: 12 } }),
-        new Feature({ _id: 'GGGGG', properties: { TENURE_AREA_IN_HECTARES: 13 } })
-      ])
-    );
 
     TestBed.configureTestingModule({
       providers: [

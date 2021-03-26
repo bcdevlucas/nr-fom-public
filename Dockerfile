@@ -15,6 +15,6 @@ COPY ./openshift/package*.json ./
 RUN npm install
 COPY ./openshift/server.js .
 
-EXPOSE 4200
+EXPOSE 4300
 
 CMD ["node", "server.js"]

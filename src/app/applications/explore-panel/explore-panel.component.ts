@@ -6,12 +6,10 @@ import * as moment from 'moment';
 
 import { ApplicationService, IFiltersType } from 'app/services/application.service';
 import { CommentPeriodService } from 'app/services/commentperiod.service';
-import { PurposeInfoModalComponent } from 'app/applications/purpose-info-modal/purpose-info-modal.component';
 import { UrlService } from 'app/services/url.service';
 
-import { StatusCodes, PurposeCodes } from 'app/utils/constants/application';
+import { StatusCodes } from 'app/utils/constants/application';
 import { CommentCodes } from 'app/utils/constants/comment';
-import { ICodeGroup } from 'app/utils/constants/interfaces';
 import { Filter, MultiFilter, IMultiFilterFields, FilterUtils } from '../utils/filter';
 import { IUpdateEvent } from '../applications.component';
 
@@ -74,14 +72,6 @@ export class ExplorePanelComponent implements OnDestroy {
     ]
   });
 
-  // application purpose filters
-  public purposeFilters = new MultiFilter<boolean>({
-    queryParamsKey: 'purposes',
-    filters: new PurposeCodes().getCodeGroups().map((codeGroup: ICodeGroup) => {
-      return { queryParam: codeGroup.param, displayString: codeGroup.text.long, value: false };
-    })
-  });
-
   // application publish from date filter
   public publishFromFilter = new Filter<Date>({ filter: { queryParam: 'publishFrom', value: null } });
 
@@ -115,7 +105,6 @@ export class ExplorePanelComponent implements OnDestroy {
     const newFilterHash = FilterUtils.hashFilters(
       this.commentPeriodFilters,
       this.statusFilters,
-      this.purposeFilters,
       this.publishFromFilter,
       this.publishToFilter
     );
@@ -168,11 +157,6 @@ export class ExplorePanelComponent implements OnDestroy {
       filter.value = appStatusQueryParams.includes(filter.queryParam);
     });
 
-    const appPurposeQueryParams = (this.urlService.getQueryParam(this.purposeFilters.queryParamsKey) || '').split('|');
-    this.purposeFilters.filters.forEach(filter => {
-      filter.value = appPurposeQueryParams.includes(filter.queryParam);
-    });
-
     this.publishFromFilter.filter.value = this.urlService.getQueryParam(this.publishFromFilter.filter.queryParam)
       ? moment(this.urlService.getQueryParam(this.publishFromFilter.filter.queryParam)).toDate()
       : null;
@@ -192,7 +176,6 @@ export class ExplorePanelComponent implements OnDestroy {
     const filters = {
       cpStatuses: this.commentPeriodFilters.getQueryParamsArray(),
       appStatuses: this.statusFilters.getQueryParamsArray(),
-      purposes: this.purposeFilters.getQueryParamsArray(),
       publishFrom: this.publishFromFilter.filter.value
         ? moment(this.publishFromFilter.filter.value)
             .startOf('day')
@@ -241,8 +224,6 @@ export class ExplorePanelComponent implements OnDestroy {
 
     this.urlService.setQueryParam(this.statusFilters.queryParamsKey, this.statusFilters.getQueryParamsString());
 
-    this.urlService.setQueryParam(this.purposeFilters.queryParamsKey, this.purposeFilters.getQueryParamsString());
-
     this.urlService.setQueryParam(
       this.publishFromFilter.filter.queryParam,
       this.publishFromFilter.filter.value && moment(this.publishFromFilter.filter.value).format('YYYY-MM-DD')
@@ -274,7 +255,6 @@ export class ExplorePanelComponent implements OnDestroy {
   public clearAllFilters() {
     this.commentPeriodFilters.reset();
     this.statusFilters.reset();
-    this.purposeFilters.reset();
     this.publishFromFilter.reset();
     this.publishToFilter.reset();
   }
@@ -289,20 +269,11 @@ export class ExplorePanelComponent implements OnDestroy {
     return (
       this.commentPeriodFilters.isFilterSet() ||
       this.statusFilters.isFilterSet() ||
-      this.purposeFilters.isFilterSet() ||
       this.publishFromFilter.isFilterSet() ||
       this.publishToFilter.isFilterSet()
     );
   }
 
-  /**
-   * Show purpose filter details modal.
-   *
-   * @memberof ExplorePanelComponent
-   */
-  public showPurposeInfoModal() {
-    this.modalService.open(PurposeInfoModalComponent, { size: 'lg', windowClass: 'modal-fixed' });
-  }
 
   /**
    * On component destroy.

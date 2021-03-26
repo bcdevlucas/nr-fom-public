@@ -27,14 +27,6 @@
                   <span class="value client-name">{{item['applicants'] || 'Applicant Name Not Available'}}</span>
                 </li>
                 <li>
-                  <span class="key">Purpose / Subpurpose</span>
-                  <!-- TODO: Need a better way of handling values that are not available - see also below -->
-                  <span class="value">
-                    <span *ngIf="item.purpose || item.subpurpose">{{item.purpose | titlecase}} / {{item.subpurpose | titlecase}}</span>
-                    <span *ngIf="!item.purpose || !item.subpurpose">Not Available</span>
-                  </span>
-                </li>
-                <li>
                   <span class="key">Disposition Transaction</span>
                   <span class="value">{{item.tantalisID}}</span>
                 </li>
