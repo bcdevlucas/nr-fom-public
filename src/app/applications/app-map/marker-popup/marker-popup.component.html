@@ -3,10 +3,12 @@
 </div>
 
 <div class="popup-content" *ngIf="app">
-  <div class="file-number">Crown Land File: {{app['clFile'] || '-'}}</div>
+  <!-- TODO - Marcelo<div class="file-number">Crown Land File: {{app['clFile'] || '-'}}</div> -->
+  <div class="file-number">FOM: {{app['cl_file'] || '-'}}</div>
 
-  <div class="applicant-name">{{app['applicants'] | titlecase}}</div>
-  <div class="purpose">{{app.purpose | titlecase}} - {{app.subpurpose | titlecase}}</div>
+  <!-- <div class="applicant-name">{{app['applicants'] | titlecase}}</div> -->
+  <div class="applicant-name">{{app['client'] | titlecase}}</div>
+  <div class="purpose">Proposed Forest Operations Map</div>
 
   <ul class="status-container">
     <li class="app-status"
@@ -18,7 +20,7 @@
         'approved':        applicationService.isDecisionApproved(app),
         'not-approved':    applicationService.isDecisionNotApproved(app),
         'unknown':         applicationService.isUnknown(app)
-      }">{{applicationService.getStatusStringLong(app)}}
+      }">Proposed FOM
     </li>
     <li class="commenting-status"
       [ngClass]="commentPeriodService.isOpen(app.cpStatus) ? 'commenting-open':'commenting-closed'">
@@ -26,5 +28,5 @@
     </li>
   </ul>
 
-  <button class="app-link btn btn-primary" (click)="showDetails()">View Application Details</button>
+  <button class="app-link btn btn-primary" (click)="showDetails()">View Forest Operations Map Details</button>
 </div>

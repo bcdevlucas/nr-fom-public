@@ -46,7 +46,7 @@
     <div class="app-results">
       <span class="app-results__count">
         <span *ngIf="totalNumber == 0">No Results Found</span>
-        <span *ngIf="totalNumber> 0"><strong>{{totalNumber}}</strong> {{totalNumber !== 1 ? 'Applications' : 'Application'}} Found</span>
+        <span *ngIf="totalNumber> 0"><strong>{{totalNumber}}</strong> {{totalNumber !== 1 ? 'Applications' : 'FOM'}} Found</span>
       </span>
       <span class="app-results__clear" *ngIf="areFiltersSet()">
         <button class="clear-btn btn btn-sm btn-link" (click)="clearFilters();">Clear Filters</button>

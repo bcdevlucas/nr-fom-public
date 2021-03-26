@@ -10,6 +10,7 @@ import { CommentPeriodService } from 'app/services/commentperiod.service';
 import { ApiService } from 'app/services/api';
 import { UrlService } from 'app/services/url.service';
 import { Filter } from '../utils/filter';
+import { singleApplicationStub } from 'app/applications/stubs/application-stub';
 
 /**
  * Details side panel.
@@ -72,34 +73,48 @@ export class DetailsPanelComponent implements OnDestroy {
    *
    * @memberof DetailsPanelComponent
    */
+  // public getApplication() {
+  //   this.isAppLoading = true;
+
+  //   // load entire application so we get extra data (documents, decision, features)
+  //   this.applicationService
+  //     .getById(this.applicationIdFilter.filter.value, true)
+  //     .pipe(takeUntil(this.ngUnsubscribe))
+  //     .subscribe(
+  //       application => {
+  //         if (application) {
+  //           this.application = application;
+
+  //           this.isAppLoading = false;
+
+  //           this.applicationIdFilter.filter.value = this.application._id;
+  //           this.saveQueryParameters();
+
+  //           this.update.emit(this.application);
+
+  //           this.currentPeriodDaysRemainingCount = this.CurrentPeriodDaysRemainingCount();
+  //         }
+  //       },
+  //       error => {
+  //         this.isAppLoading = false;
+  //         console.log('error =', error);
+  //         alert("Uh-oh, couldn't load application");
+  //       }
+  //     );
+  // }
+
+  /**
+   * TODO - Marcelo
+   * Fetches an application based on its id.
+   *
+   * @memberof DetailsPanelComponent
+   */
   public getApplication() {
-    this.isAppLoading = true;
-
-    // load entire application so we get extra data (documents, decision, features)
-    this.applicationService
-      .getById(this.applicationIdFilter.filter.value, true)
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(
-        application => {
-          if (application) {
-            this.application = application;
-
-            this.isAppLoading = false;
-
-            this.applicationIdFilter.filter.value = this.application._id;
-            this.saveQueryParameters();
-
-            this.update.emit(this.application);
-
-            this.currentPeriodDaysRemainingCount = this.CurrentPeriodDaysRemainingCount();
-          }
-        },
-        error => {
-          this.isAppLoading = false;
-          console.log('error =', error);
-          alert("Uh-oh, couldn't load application");
-        }
-      );
+    this.applicationService.getByIdStub();
+    this.isAppLoading = false;
+     this.application = singleApplicationStub;
+    this.currentPeriodDaysRemainingCount = 20;
+    this.applicationId = 122222;
   }
 
   /**

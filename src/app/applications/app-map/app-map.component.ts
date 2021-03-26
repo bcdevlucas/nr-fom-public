@@ -454,7 +454,6 @@ export class AppMapComponent implements AfterViewInit, OnChanges, OnDestroy {
         }
         const title =
           `${app['applicants'] || 'Applicant Name Not Available'}\n` +
-          `${app.purpose || '-'} / ${app.subpurpose || '-'}\n` +
           `${app.location || 'Location Not Available'}\n`;
         const marker = L.marker(L.latLng(app.centroid[1], app.centroid[0]), { title: title })
           .setIcon(markerIcon)

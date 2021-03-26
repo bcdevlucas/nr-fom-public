@@ -111,8 +111,6 @@ describe('ExplorePanelComponent', () => {
       component.publishFromFilter.filter.value = now;
       component.publishToFilter.filter.value = now;
 
-      component.purposeFilters.filters[0].value = true;
-
       component.statusFilters.filters[2].value = true;
 
       component.commentPeriodFilters.filters[1].value = true;
@@ -132,7 +130,6 @@ describe('ExplorePanelComponent', () => {
           .toDate()
       );
       expect(filters.appStatuses).toEqual(['DA']);
-      expect(filters.purposes).toEqual(['AGR']);
       expect(filters.cpStatuses).toEqual(['NOT_OPEN']);
     });
   });
