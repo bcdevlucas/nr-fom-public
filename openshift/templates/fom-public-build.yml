@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: Template
+labels:
+  template: fom-public-build
+metadata:
+  creationTimestamp: null
+  name: fom-public-build
+parameters:
+  - description: Name of the application component
+    displayName: Name
+    name: NAME
+    value: fom-public
+  - description: Tag (e.g. release/build)
+    displayName: Tag
+    name: TAG
+    value: demo
+
+objects:
+  - kind: ImageStream
+    apiVersion: v1
+    metadata:
+      creationTimestamp: null
+      name: "${NAME}"
+    spec:
+      lookupPolicy:
+        local: false
+    status:
+      dockerImageRepository: ""
+
+  - kind: BuildConfig
+    apiVersion: v1
+    metadata:
+      name: "${NAME}"
+      namespace: a4b31c-tools
+    labels:
+      app: fom
+      app.component: "${NAME}"
+      tech: angular
+      tag: "${TAG}"
+    spec:
+      nodeSelector: null
+      output:
+        to:
+          kind: ImageStreamTag
+          name: '${NAME}:${TAG}'
+      resources:
+        limits:
+          cpu: '2'
+          memory: 8Gi
+      successfulBuildsHistoryLimit: 5
+      failedBuildsHistoryLimit: 5
+      strategy:
+        type: Docker
+        dockerStrategy:
+          dockerfilePath: Dockerfile
+      postCommit: {}
+      source:
+        type: Git
+        git:
+          uri: 'https://github.com/bcgov/nr-fom-public'
+        contextDir: /
+    runPolicy: Serial
+#  triggers:
+#    - type: Generic
+#      generic:
+#        secretReference:
+#          name: nr-fom-admin-from-dockerfile-generic-webhook-secret
+#    - type: GitHub
+#      github:
+#        secretReference:
+#          name: nr-fom-admin-from-dockerfile-github-webhook-secret
+#    - type: ConfigChange
