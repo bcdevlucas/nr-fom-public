@@ -35,7 +35,6 @@ objects:
     labels:
       app: fom
       app.component: "${NAME}"
-      tech: angular
       tag: "${TAG}"
     spec:
       nodeSelector: null
