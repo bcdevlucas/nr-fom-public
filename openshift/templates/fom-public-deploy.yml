@@ -3,8 +3,9 @@ kind: Template
 labels:
   template: fom-public-deploy
   app: fom
-  app-component: '${NAME}'
-  tag: '${TAG}'
+  app-component: ${NAME}
+  tag: ${TAG}
+  app.kubernetes.io/part-of: fom
 metadata:
   name: fom-public-deploy
 parameters:
@@ -37,8 +38,8 @@ objects:
   - kind: DeploymentConfig
     apiVersion: apps.openshift.io/v1
     metadata:
-      name: '${NAME}-${TAG}-${ENV}'
-    namespace: '${PROJECT}-${ENV}'
+      name: ${NAME}-${TAG}-${ENV}
+    namespace: ${PROJECT}-${ENV}
     labels:
     spec:
       replicas: 1
@@ -55,39 +56,51 @@ objects:
       resources: {}
       activeDeadlineSeconds: 21600
       selector:
-        deploymentconfig: '${NAME}-${TAG}-${ENV}'
+        deploymentconfig: ${NAME}-${TAG}-${ENV}
       triggers:
         - type: ImageChange
           imageChangeParams:
             automatic: true
             containerNames:
-              - '${NAME}-${TAG}-${ENV}'
+              - ${NAME}-${TAG}-${ENV}
             from:
               kind: ImageStreamTag
               namespace: ${PROJECT}-tools
-              name: '${NAME}:${TAG}'
+              name: ${NAME}:${TAG}
         - type: ConfigChange
       template:
         metadata:
           creationTimestamp: null
           labels:
-            deploymentconfig: '${NAME}-${TAG}-${ENV}'
+            deploymentconfig: ${NAME}-${TAG}-${ENV}
         spec:
           containers:
-            - name: '${NAME}-${TAG}-${ENV}'
+            - name: ${NAME}-${TAG}-${ENV}
               image: >-
                 image-registry.openshift-image-registry.svc:5000/${PROJECT}-tools/${NAME}:${TAG}
               env:
                 - name: PORT
-                  value: '4300'
+                  value: '${PORT}'
+              #ports:
+              #  - containerPort: ${{PORT}}
+              #    protocol: TCP
               resources:
                 limits:
                   cpu: '2'
                   memory: 8Gi              
+              livenessProbe:
+                httpGet:
+                  path: /
+                  port: ${{PORT}}
+                  scheme: HTTP
+                timeoutSeconds: 1
+                periodSeconds: 10
+                successThreshold: 1
+                failureThreshold: 3
               readinessProbe:
                 httpGet:
                   path: /
-                  port: 4300
+                  port: ${{PORT}}
                   scheme: HTTP
                 timeoutSeconds: 1
                 periodSeconds: 10
@@ -104,8 +117,8 @@ objects:
   - kind: Service
     apiVersion: v1
     metadata:
-      name: '${NAME}-${TAG}'
-      namespace: '${PROJECT}-${ENV}'
+      name: ${NAME}-${TAG}
+      namespace: ${PROJECT}-${ENV}
       labels:
     spec:
       ports:
@@ -114,15 +127,15 @@ objects:
           port: ${{PORT}}
           targetPort: ${{PORT}}
       selector:
-        deploymentconfig: '${NAME}-${TAG}-${ENV}'
+        deploymentconfig: ${NAME}-${TAG}-${ENV}
       type: ClusterIP
       sessionAffinity: None
   ### Route
   - kind: Route
     apiVersion: v1
     metadata:
-      name: '${NAME}-${TAG}'
-      namespace: '${PROJECT}-${ENV}'
+      name: ${NAME}-${TAG}
+      namespace: ${PROJECT}-${ENV}
     spec:
       host: ${NAME}-${TAG}-${PROJECT}-${ENV}.apps.silver.devops.gov.bc.ca
       to:
@@ -135,4 +148,15 @@ objects:
         termination: edge
         insecureEdgeTerminationPolicy: Redirect
       wildcardPolicy: None
-
+  ### Network Policy
+  - kind: NetworkPolicy
+    apiVersion: networking.k8s.io/v1
+    metadata:
+      name: web-allow-external-${NAME}-${TAG}
+      namespace: ${PROJECT}-${ENV}
+    spec:
+      podSelector:
+        matchLabels:
+          deploymentconfig: ${NAME}-${TAG}-${ENV}
+      ingress:
+        - {}
