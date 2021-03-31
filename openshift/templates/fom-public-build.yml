@@ -2,8 +2,10 @@ apiVersion: v1
 kind: Template
 labels:
   template: fom-public-build
+  app: fom
+  app-component: ${NAME}
+  app.kubernetes.io/part-of: fom
 metadata:
-  creationTimestamp: null
   name: fom-public-build
 parameters:
   - description: Name of the application component
@@ -14,34 +16,32 @@ parameters:
     displayName: Tag
     name: TAG
     value: demo
-
+  - description: Git Source Reference (branch/tag/ref )
+    displayName: Git Ref
+    name: GIT_REF
+    value: master
 objects:
+  ### ImageStream - scoped to entire application component, not to tag. Do not delete/recreate as this leads to loss of previously stored images
   - kind: ImageStream
     apiVersion: v1
     metadata:
-      creationTimestamp: null
-      name: "${NAME}"
+      name: ${NAME}
     spec:
       lookupPolicy:
         local: false
-    status:
-      dockerImageRepository: ""
-
+  ### BuildConfig
   - kind: BuildConfig
     apiVersion: v1
     metadata:
-      name: "${NAME}"
-      namespace: a4b31c-tools
-    labels:
-      app: fom
-      app.component: "${NAME}"
-      tag: "${TAG}"
+      name: ${NAME}-${TAG}
+      labels:
+        tag: "${TAG}"
     spec:
       nodeSelector: null
       output:
         to:
           kind: ImageStreamTag
-          name: '${NAME}:${TAG}'
+          name: ${NAME}:${TAG}
       resources:
         limits:
           cpu: '2'
@@ -57,8 +57,9 @@ objects:
         type: Git
         git:
           uri: 'https://github.com/bcgov/nr-fom-public'
+          ref: ${GIT_REF}
         contextDir: /
-    runPolicy: Serial
+    runPolicy: SerialLatestOnly
 #  triggers:
 #    - type: Generic
 #      generic:
