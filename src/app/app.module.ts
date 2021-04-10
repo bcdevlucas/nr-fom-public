@@ -43,7 +43,7 @@ import { UrlService } from 'app/services/url.service';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    NgbModule.forRoot(),
+    NgbModule,
     NgxPageScrollCoreModule.forRoot({ scrollOffset: 50, easingLogic: easingLogic }),
     NgxPageScrollModule,
     SharedModule,

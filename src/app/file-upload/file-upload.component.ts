@@ -17,7 +17,7 @@ export class FileUploadComponent {
   @Input() showInfo = true;
   @Input() showList = true;
   @Output() filesChange = new EventEmitter();
-  @ViewChild('file') fileInput: ElementRef;
+  @ViewChild('file', { static: false }) fileInput: ElementRef;
   public errors: string[] = [];
 
   constructor() {}
