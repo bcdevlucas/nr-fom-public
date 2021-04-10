@@ -69,11 +69,11 @@ const PAGE_SIZE = 250;
   styleUrls: ['./applications.component.scss']
 })
 export class ApplicationsComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('appmap') appmap: AppMapComponent;
-  @ViewChild('applist') applist: AppListComponent;
-  @ViewChild('findPanel') findPanel: FindPanelComponent;
-  @ViewChild('explorePanel') explorePanel: ExplorePanelComponent;
-  @ViewChild('detailsPanel') detailsPanel: DetailsPanelComponent;
+  @ViewChild('appmap', { static: false }) appmap: AppMapComponent;
+  @ViewChild('applist', { static: false }) applist: AppListComponent;
+  @ViewChild('findPanel', { static: false }) findPanel: FindPanelComponent;
+  @ViewChild('explorePanel', { static: false }) explorePanel: ExplorePanelComponent;
+  @ViewChild('detailsPanel', { static: false }) detailsPanel: DetailsPanelComponent;
 
   private ngUnsubscribe: Subject<boolean> = new Subject<boolean>();
 
