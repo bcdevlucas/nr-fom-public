@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, Renderer2, ViewChild } from '@angular/core';
-import { MatSnackBarRef, SimpleSnackBar, MatSnackBar } from '@angular/material';
+import { MatSnackBarRef, SimpleSnackBar, MatSnackBar } from '@angular/material/Snack-bar';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Router, UrlTree } from '@angular/router';
 
