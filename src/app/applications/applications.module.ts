@@ -32,7 +32,6 @@ import { SplashModalComponent } from './splash-modal/splash-modal.component';
     DateInputComponent,
     FindPanelComponent,
     SplashModalComponent
-  ],
-  entryComponents: [MarkerPopupComponent, SplashModalComponent]
+  ]
 })
 export class ApplicationsModule {}
