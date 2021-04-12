@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -38,7 +37,6 @@ import { UrlService } from 'app/services/url.service';
 
 @NgModule({
   imports: [
-    TagInputModule,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
@@ -73,7 +71,6 @@ import { UrlService } from 'app/services/url.service';
     FeatureService,
     UrlService
   ],
-  entryComponents: [CommentModalComponent, ConfirmComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -53,7 +53,8 @@ export class CommentModalComponent implements OnInit {
           ConfirmComponent,
           {
             title: 'Are you sure?',
-            message: 'You are about to discard your comment. Do you want to continue?'
+            message: 'You are about to discard your comment. Do you want to continue?',
+            okOnly: false
           },
           {
             backdropColor: 'rgba(0, 0, 0, 0.5)'
