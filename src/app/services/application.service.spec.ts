@@ -45,7 +45,7 @@ describe('ApplicationService', () => {
       ]
     });
 
-    const commentPeriodServiceSpy = spyOn(TestBed.get(CommentPeriodService), 'getAllByApplicationId');
+    const commentPeriodServiceSpy = spyOn(TestBed.inject(CommentPeriodService), 'getAllByApplicationId');
     commentPeriodServiceSpy.and.returnValue(
       of([
         new CommentPeriod({ _id: 'DDDDD', startDate: new Date(2016, 10, 1), endDate: new Date(2100, 11, 10) }),
@@ -55,14 +55,14 @@ describe('ApplicationService', () => {
   });
 
   it('should be created', () => {
-    const service = TestBed.get(ApplicationService);
+    const service = TestBed.inject(ApplicationService);
     expect(service).toBeTruthy();
   });
 
   describe('getCount()', () => {
     let service;
     beforeEach(() => {
-      service = TestBed.get(ApplicationService);
+      service = TestBed.inject(ApplicationService);
     });
 
     it('retrieves the x-total-count header', async(() => {
@@ -94,8 +94,8 @@ describe('ApplicationService', () => {
     ];
 
     beforeEach(() => {
-      service = TestBed.get(ApplicationService);
-      apiService = TestBed.get(ApiService);
+      service = TestBed.inject(ApplicationService);
+      apiService = TestBed.inject(ApiService);
 
       apiService.getApplications.and.returnValue(of(existingApplicationsData));
     });
@@ -123,8 +123,8 @@ describe('ApplicationService', () => {
     };
 
     beforeEach(() => {
-      service = TestBed.get(ApplicationService);
-      apiService = TestBed.get(ApiService);
+      service = TestBed.inject(ApplicationService);
+      apiService = TestBed.inject(ApiService);
     });
 
     describe('when an application has been cached', () => {
@@ -224,7 +224,7 @@ describe('ApplicationService', () => {
   describe('getStatusStringShort()', () => {
     let service;
     beforeEach(() => {
-      service = TestBed.get(ApplicationService);
+      service = TestBed.inject(ApplicationService);
     });
 
     it('with invalid code it returns "Unknown"', () => {
@@ -260,7 +260,7 @@ describe('ApplicationService', () => {
     let service;
     let application;
     beforeEach(() => {
-      service = TestBed.get(ApplicationService);
+      service = TestBed.inject(ApplicationService);
     });
 
     it('with invalid code it returns "Unknown Status"', () => {
