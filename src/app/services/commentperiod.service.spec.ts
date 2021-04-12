@@ -19,7 +19,7 @@ describe('CommentPeriodService', () => {
   });
 
   it('should be created', () => {
-    const service = TestBed.get(CommentPeriodService);
+    const service = TestBed.inject(CommentPeriodService);
     expect(service).toBeTruthy();
   });
 
@@ -27,8 +27,8 @@ describe('CommentPeriodService', () => {
     let service: CommentPeriodService;
     let apiSpy;
     beforeEach(() => {
-      service = TestBed.get(CommentPeriodService);
-      apiSpy = TestBed.get(ApiService);
+      service = TestBed.inject(CommentPeriodService);
+      apiSpy = TestBed.inject(ApiService);
     });
 
     describe('when no comment periods are returned by the Api', () => {
@@ -90,8 +90,8 @@ describe('CommentPeriodService', () => {
     let service: CommentPeriodService;
     let apiSpy;
     beforeEach(() => {
-      service = TestBed.get(CommentPeriodService);
-      apiSpy = TestBed.get(ApiService);
+      service = TestBed.inject(CommentPeriodService);
+      apiSpy = TestBed.inject(ApiService);
     });
 
     describe('when forceReload is set to true', () => {
@@ -170,7 +170,7 @@ describe('CommentPeriodService', () => {
   describe('getCurrent', () => {
     let service: CommentPeriodService;
     beforeEach(() => {
-      service = TestBed.get(CommentPeriodService);
+      service = TestBed.inject(CommentPeriodService);
     });
 
     describe('when no comment periods provided', () => {
@@ -204,7 +204,7 @@ describe('CommentPeriodService', () => {
     let service: CommentPeriodService;
     let today: Date;
     beforeEach(() => {
-      service = TestBed.get(CommentPeriodService);
+      service = TestBed.inject(CommentPeriodService);
       today = new Date();
     });
 
@@ -275,7 +275,7 @@ describe('CommentPeriodService', () => {
   describe('getStatusString', () => {
     let service: CommentPeriodService;
     beforeEach(() => {
-      service = TestBed.get(CommentPeriodService);
+      service = TestBed.inject(CommentPeriodService);
     });
 
     it('returns a human readable NOT OPEN status string', () => {
