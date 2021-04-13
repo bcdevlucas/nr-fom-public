@@ -5,7 +5,8 @@
     "baseUrl": "",
     "types": [
       "arcgis-js-api"
-    ]
+    ],
+    "skipLibCheck": true
   },
   "exclude": [
     "test.ts",
