@@ -24,7 +24,7 @@ import { UrlService } from 'app/services/url.service';
 import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
 
 declare module 'leaflet' {
-  // tslint:disable-next-line:interface-name
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   export interface Marker<P = any> {
     dispositionId: number;
   }
@@ -152,7 +152,7 @@ export class AppMapComponent implements AfterViewInit, OnChanges, OnDestroy {
       'https://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}',
       {
         attribution:
-          // tslint:disable-next-line:max-line-length
+          // eslint-disable-next-line max-len
           'Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri',
         maxZoom: 10.4,
         noWrap: true
@@ -162,7 +162,7 @@ export class AppMapComponent implements AfterViewInit, OnChanges, OnDestroy {
       'https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}',
       {
         attribution:
-          // tslint:disable-next-line:max-line-length
+          // eslint-disable-next-line max-len
           'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
         maxZoom: 16.4,
         noWrap: true
@@ -172,7 +172,7 @@ export class AppMapComponent implements AfterViewInit, OnChanges, OnDestroy {
       'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
       {
         attribution:
-          // tslint:disable-next-line:max-line-length
+          // eslint-disable-next-line max-len
           'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community',
         maxZoom: 17.5,
         noWrap: true
@@ -182,7 +182,7 @@ export class AppMapComponent implements AfterViewInit, OnChanges, OnDestroy {
       'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
       {
         attribution:
-          // tslint:disable-next-line:max-line-length
+          // eslint-disable-next-line max-len
           'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
         maxZoom: 16.4,
         noWrap: true
@@ -379,7 +379,7 @@ export class AppMapComponent implements AfterViewInit, OnChanges, OnDestroy {
    * Emits an event to notify applications component of updated coordinates.
    * Debounced function executes when 250ms have elapsed since last call.
    */
-  // tslint:disable-next-line:member-ordering
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   private emitCoordinates = _.debounce(() => {
     this.updateCoordinates.emit();
   }, 250);
