@@ -24,7 +24,7 @@ describe('DecisionService', () => {
   });
 
   it('should be created', () => {
-    const service: DecisionService = TestBed.get(DecisionService);
+    const service: DecisionService = TestBed.inject(DecisionService);
     expect(service).toBeTruthy();
   });
 
@@ -33,9 +33,9 @@ describe('DecisionService', () => {
     let apiSpy;
     let documentServiceSpy;
     beforeEach(() => {
-      service = TestBed.get(DecisionService);
-      apiSpy = TestBed.get(ApiService);
-      documentServiceSpy = TestBed.get(DocumentService);
+      service = TestBed.inject(DecisionService);
+      apiSpy = TestBed.inject(ApiService);
+      documentServiceSpy = TestBed.inject(DocumentService);
     });
 
     describe('when forceReload is set to true', () => {
@@ -171,9 +171,9 @@ describe('DecisionService', () => {
     let apiSpy;
     let documentServiceSpy;
     beforeEach(() => {
-      service = TestBed.get(DecisionService);
-      apiSpy = TestBed.get(ApiService);
-      documentServiceSpy = TestBed.get(DocumentService);
+      service = TestBed.inject(DecisionService);
+      apiSpy = TestBed.inject(ApiService);
+      documentServiceSpy = TestBed.inject(DocumentService);
     });
 
     describe('when forceReload is set to true', () => {

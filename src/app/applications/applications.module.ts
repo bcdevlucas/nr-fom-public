@@ -20,7 +20,7 @@ import { FindPanelComponent } from './find-panel/find-panel.component';
 import { SplashModalComponent } from './splash-modal/splash-modal.component';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, NgbModule.forRoot(), RouterModule, SharedModule],
+  imports: [CommonModule, FormsModule, NgbModule, RouterModule, SharedModule],
   declarations: [
     ApplicationsComponent,
     AppListComponent,
@@ -32,7 +32,6 @@ import { SplashModalComponent } from './splash-modal/splash-modal.component';
     DateInputComponent,
     FindPanelComponent,
     SplashModalComponent
-  ],
-  entryComponents: [MarkerPopupComponent, SplashModalComponent]
+  ]
 })
 export class ApplicationsModule {}

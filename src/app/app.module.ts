@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
-import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
-import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 
 // modules
@@ -38,14 +35,11 @@ import { UrlService } from 'app/services/url.service';
 
 @NgModule({
   imports: [
-    TagInputModule,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    NgbModule.forRoot(),
-    NgxPageScrollCoreModule.forRoot({ scrollOffset: 50, easingLogic: easingLogic }),
-    NgxPageScrollModule,
+    NgbModule,
     SharedModule,
     ApplicationsModule,
     AppRoutingModule, // <-- module import order matters - https://angular.io/guide/router#module-import-order-matters
@@ -73,7 +67,6 @@ import { UrlService } from 'app/services/url.service';
     FeatureService,
     UrlService
   ],
-  entryComponents: [CommentModalComponent, ConfirmComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

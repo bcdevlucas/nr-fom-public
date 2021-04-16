@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { ApiService } from './services/api';
 
 describe('AppComponent', () => {
@@ -15,7 +14,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AppComponent, HeaderComponent, FooterComponent],
-      imports: [RouterTestingModule, NgxPageScrollModule],
+      imports: [RouterTestingModule],
       providers: [{ provide: ApiService, useValue: apiServiceStub }]
     }).compileComponents();
   }));
