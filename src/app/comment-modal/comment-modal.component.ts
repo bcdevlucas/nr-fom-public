@@ -1,11 +1,8 @@
 import { Component, Input, HostListener, OnInit } from '@angular/core';
 // import { HttpEventType } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { DialogService } from 'ng2-bootstrap-modal';
 import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { ConfirmComponent } from 'app/confirm/confirm.component';
 import { Comment } from 'app/models/comment';
 import { Document } from 'app/models/document';
 import { CommentPeriod } from 'app/models/commentperiod';
@@ -29,7 +26,6 @@ export class CommentModalComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private dialogService: DialogService,
     private commentService: CommentService,
     private documentService: DocumentService
   ) {}
@@ -48,12 +44,23 @@ export class CommentModalComponent implements OnInit {
   public dismiss(reason: string) {
     if (this.currentPage < 4 && this.anyUnsavedData()) {
       // prompt to confirm
+      /*
+        // 2021-04-14
+        // Comment out the prompt. The dialogService.addDialog does not work after migration to 
+        // Angular 11 (or 9+ starts to see this)
+        // Revisit to fix it or replace with other dialog lib if needed.
+        // Remove following for dialogService:
+            // import { DialogService } from 'ng2-bootstrap-modal';
+            // import { ConfirmComponent } from 'app/confirm/confirm.component';
+            // constructor( private dialogService: DialogService )
+
       this.dialogService
         .addDialog(
           ConfirmComponent,
           {
             title: 'Are you sure?',
-            message: 'You are about to discard your comment. Do you want to continue?'
+            message: 'You are about to discard your comment. Do you want to continue?',
+            okOnly: false
           },
           {
             backdropColor: 'rgba(0, 0, 0, 0.5)'
@@ -65,6 +72,8 @@ export class CommentModalComponent implements OnInit {
             this.activeModal.dismiss(reason);
           }
         });
+        */
+        this.activeModal.dismiss(reason);
     } else {
       // dismiss right away
       this.activeModal.dismiss(reason);
