@@ -58,48 +58,35 @@ export class ApiService {
   public isMS: boolean; // IE, Edge, etc
   public apiPath: string;
   public adminUrl: string;
-  public env: 'local' | 'dev' | 'test' | 'master' | 'prod';
+  public env: string;
 
   constructor(private http: HttpClient) {
     // const currentUser = JSON.parse(window.localStorage.getItem('currentUser'));
     // this.token = currentUser && currentUser.token;
     this.isMS = window.navigator.msSaveOrOpenBlob ? true : false;
+
+    this.env = process.env.FOM_ENV || 'local';
+
     const { hostname } = window.location;
-    switch (hostname) {
-      case 'localhost':
-        // Local
-        this.apiPath = 'http://localhost:3000/api/public';
-        this.adminUrl = 'http://localhost:4200';
-        this.env = 'local';
-        break;
-
-      case 'nrts-prc-dev.pathfinder.gov.bc.ca':
-        // Dev
-        this.apiPath = 'https://nrts-prc-dev.pathfinder.gov.bc.ca/api/public';
-        this.adminUrl = 'https://nrts-prc-dev.pathfinder.gov.bc.ca/admin/';
-        this.env = 'dev';
-        break;
-
-      case 'nrts-prc-master.pathfinder.gov.bc.ca':
-        // Master
-        this.apiPath = 'https://nrts-prc-master.pathfinder.gov.bc.ca/api/public';
-        this.adminUrl = 'https://nrts-prc-master.pathfinder.gov.bc.ca/admin/';
-        this.env = 'master';
-        break;
-
-      case 'nrts-prc-test.pathfinder.gov.bc.ca':
-        // Test
-        this.apiPath = 'https://nrts-prc-test.pathfinder.gov.bc.ca/api/public';
-        this.adminUrl = 'https://nrts-prc-test.pathfinder.gov.bc.ca/admin/';
-        this.env = 'test';
-        break;
-
-      default:
-        // Prod
-        this.apiPath = 'https://comment.nrs.gov.bc.ca/api/public';
-        this.adminUrl = 'https://comment.nrs.gov.bc.ca/admin/';
-        this.env = 'prod';
+    if (hostname == 'localhost') {
+      this.apiPath = 'http://localhost:3333/api';
+    } else if (hostname.includes('nr-fom-public') && hostname.includes('devops.gov.bc.ca')) {
+      this.apiPath = 'https://'+hostname.replace('fom-public','fom-api'); 
+      if (!hostname.endsWith('/')) {
+        this.apiPath += '/';
+      }
+      this.apiPath += 'api';
+    } else {
+      // TODO: May need special case for production vanity URL, or implement solution for dynamically loading from a config map.
+      throwError('Unrecognized hostname ' + hostname + ' cannot infer API URL.');
     }
+
+    // TODO: Set correct admin URL, or remove from public footer.
+    // Old ACRFD prod settings:
+    // this.apiPath = 'https://comment.nrs.gov.bc.ca/api/public';
+    // this.adminUrl = 'https://comment.nrs.gov.bc.ca/admin/';
+
+    this.adminUrl = 'http://localhost:4200';
   }
 
   /**
