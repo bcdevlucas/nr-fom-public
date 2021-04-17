@@ -1,4 +1,4 @@
-# This script is designed to NOT delete the ImageStream, so recreation of the Image Stream will fail.
+# This script is designed to NOT delete the ImageStream and Secret, so recreation of the Image Stream & Secret will fail.
 Set-Variable -Name "name" -Value "public"
 
 Set-Variable -Name "tag" -Value "demo"
