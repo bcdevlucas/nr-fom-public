@@ -21,14 +21,15 @@ export class CommentModalComponent implements OnInit {
   public progressBufferValue: number; // used in template
   public totalSize: number;
   public currentPage = 1;
-  private comment: Comment;
+  public comment: Comment;
   public files: File[] = [];
+  public iAgreeModel = false;
 
   constructor(
     public activeModal: NgbActiveModal,
     private commentService: CommentService,
     private documentService: DocumentService
-  ) {}
+  ) { }
 
   // check for unsaved changes before closing (or reloading) current tab/window
   @HostListener('window:beforeunload', ['$event'])
@@ -73,7 +74,7 @@ export class CommentModalComponent implements OnInit {
           }
         });
         */
-        this.activeModal.dismiss(reason);
+      this.activeModal.dismiss(reason);
     } else {
       // dismiss right away
       this.activeModal.dismiss(reason);
