@@ -65,7 +65,8 @@ export class ApiService {
     // this.token = currentUser && currentUser.token;
     this.isMS = window.navigator.msSaveOrOpenBlob ? true : false;
 
-    this.env = process.env.FOM_ENV || 'local';
+    // TODO: Won't work, needs to be changed.
+    this.env = 'local'; // process.env.FOM_ENV || 'local';
 
     const { hostname } = window.location;
     if (hostname == 'localhost') {
