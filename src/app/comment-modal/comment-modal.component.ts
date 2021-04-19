@@ -46,10 +46,12 @@ export class CommentModalComponent implements OnInit {
     if (this.currentPage < 4 && this.anyUnsavedData()) {
       // prompt to confirm
       /*
-        // 2021-04-14
+        // 2021-04-18
         // Comment out the prompt. The dialogService.addDialog does not work after migration to 
         // Angular 11 (or 9+ starts to see this)
-        // Revisit to fix it or replace with other dialog lib if needed.
+        // Original third-party ng2-bootstrap-modal is not compitable with Angular 11 and 
+        // is no longer supported and maintained by the authors.
+        // Revisit to fix it by replacing with other dialog lib if needed.
         // Remove following for dialogService:
             // import { DialogService } from 'ng2-bootstrap-modal';
             // import { ConfirmComponent } from 'app/confirm/confirm.component';
