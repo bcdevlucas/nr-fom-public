@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, Renderer2, ViewChild } from '@angular/core';
-import { MatSnackBarRef, SimpleSnackBar, MatSnackBar } from '@angular/material/Snack-bar';
+import { MatSnackBarRef, SimpleSnackBar, MatSnackBar } from '@angular/material/snack-bar';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Router, UrlTree } from '@angular/router';
 
@@ -258,67 +258,67 @@ export class ApplicationsComponent implements OnInit, AfterViewInit, OnDestroy {
       // get latest coordinates
       this.coordinates = this.appmap.getCoordinates();
 
-    // TODO - Marcelo added this
-    this.apps = singleApplicationStubArray;
+      // TODO - Marcelo added this
+      this.apps = singleApplicationStubArray;
       // TODO -Added by Marcelo to stop refreshing of application service
       if (false) {
-      this.applicationService
-        .getCount(this.filters, this.coordinates)
-        .pipe(operators.takeUntil(this.ngUnsubscribe))
-        .subscribe(
-          count => {
-            // prepare 'pages' of gets
-            const observables: Array<Observable<Application[]>> = [];
-            for (let page = 0; page < Math.ceil(count / PAGE_SIZE); page++) {
-              observables.push(this.applicationService.getAll(page, PAGE_SIZE, this.filters, this.coordinates));
-            }
+        this.applicationService
+          .getCount(this.filters, this.coordinates)
+          .pipe(operators.takeUntil(this.ngUnsubscribe))
+          .subscribe(
+            count => {
+              // prepare 'pages' of gets
+              const observables: Array<Observable<Application[]>> = [];
+              for (let page = 0; page < Math.ceil(count / PAGE_SIZE); page++) {
+                observables.push(this.applicationService.getAll(page, PAGE_SIZE, this.filters, this.coordinates));
+              }
 
-            // check if there's nothing to query
-            if (observables.length === 0) {
-              this.apps = [];
-            }
+              // check if there's nothing to query
+              if (observables.length === 0) {
+                this.apps = [];
+              }
 
-            // get all observables sequentially
-            // const start = new Date().getTime(); // for profiling
-            this.observablesSub = concat(...observables)
-              .pipe(
-                operators.takeUntil(this.ngUnsubscribe),
-                operators.finalize(() => {
-                  this.isLoading = false;
-                  this.hideSnackbar();
-                  // console.log('got', this.apps.length, 'apps in', new Date().getTime() - start, 'ms');
-                })
-              )
-              .subscribe(
-                applications => {
-                  if (isFirstPage) {
-                    isFirstPage = false;
-                    // replace array with applications so that first 'PAGE_SIZE' apps aren't necessarily redrawn on map
-                    // NB: OnChanges event will update the components that use this array
-                    this.apps = applications;
-                  } else {
-                    // NB: OnChanges event will update the components that use this array
-                    // NB: remove duplicates (eg, due to bad data such as multiple comment periods)
-                    this.apps = _.uniqBy(_.concat(this.apps, applications), app => app._id);
+              // get all observables sequentially
+              // const start = new Date().getTime(); // for profiling
+              this.observablesSub = concat(...observables)
+                .pipe(
+                  operators.takeUntil(this.ngUnsubscribe),
+                  operators.finalize(() => {
+                    this.isLoading = false;
+                    this.hideSnackbar();
+                    // console.log('got', this.apps.length, 'apps in', new Date().getTime() - start, 'ms');
+                  })
+                )
+                .subscribe(
+                  applications => {
+                    if (isFirstPage) {
+                      isFirstPage = false;
+                      // replace array with applications so that first 'PAGE_SIZE' apps aren't necessarily redrawn on map
+                      // NB: OnChanges event will update the components that use this array
+                      this.apps = applications;
+                    } else {
+                      // NB: OnChanges event will update the components that use this array
+                      // NB: remove duplicates (eg, due to bad data such as multiple comment periods)
+                      this.apps = _.uniqBy(_.concat(this.apps, applications), app => app._id);
+                    }
+                  },
+                  error => {
+                    console.log(error);
+                    alert("Uh-oh, couldn't load applications");
+                    // applications not found --> navigate back to home
+                    this.router.navigate(['/']);
                   }
-                },
-                error => {
-                  console.log(error);
-                  alert("Uh-oh, couldn't load applications");
-                  // applications not found --> navigate back to home
-                  this.router.navigate(['/']);
-                }
-              );
-          },
-          error => {
-            console.log(error);
-            // alert("Uh-oh, couldn't count applications");
-            // applications not found --> navigate back to home
-            this.router.navigate(['/']);
-            this.isLoading = false;
-            this.hideSnackbar();
-          }
-        );
+                );
+            },
+            error => {
+              console.log(error);
+              // alert("Uh-oh, couldn't count applications");
+              // applications not found --> navigate back to home
+              this.router.navigate(['/']);
+              this.isLoading = false;
+              this.hideSnackbar();
+            }
+          );
       }
     });
   }
