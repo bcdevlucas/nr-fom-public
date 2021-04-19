@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 
 // modules
 import { SharedModule } from 'app/shared.module';
@@ -42,8 +41,7 @@ import { UrlService } from 'app/services/url.service';
     NgbModule,
     SharedModule,
     ApplicationsModule,
-    AppRoutingModule, // <-- module import order matters - https://angular.io/guide/router#module-import-order-matters
-    BootstrapModalModule.forRoot({ container: document.body })
+    AppRoutingModule
   ],
   declarations: [
     HomeProxyComponent,
@@ -69,7 +67,7 @@ import { UrlService } from 'app/services/url.service';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
 
 export function easingLogic(t: number, b: number, c: number, d: number): number {
   // easeInOutExpo easing
