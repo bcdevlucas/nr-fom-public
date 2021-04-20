@@ -58,48 +58,54 @@ export class ApiService {
   public isMS: boolean; // IE, Edge, etc
   public apiPath: string;
   public adminUrl: string;
-  public env: 'local' | 'dev' | 'test' | 'master' | 'prod';
+  public env: string;
 
   constructor(private http: HttpClient) {
     // const currentUser = JSON.parse(window.localStorage.getItem('currentUser'));
     // this.token = currentUser && currentUser.token;
     this.isMS = window.navigator.msSaveOrOpenBlob ? true : false;
+
+    // In index.html we load a javascript file with environment-specific settings, 
+    // populated from mounted ConfigMap in OpenShift. This file sets window.localStorage settings
+    // Locally, this will be empty and local defaults will be used.
+
+    const envName = window.localStorage.getItem('fom_environment_name');
+    this.env = (envName == undefined || envName.length == 0) ? 'local' : envName;
+
+    // const remote_admin_path = window.localStorage.getItem('from_public_server--remote_admin_path');
+
+    // const deployment_env = window.localStorage.getItem('from_public_server--deployment_env');
+
+    // this.apiPath = (_.isEmpty(remote_api_path)) ? 'http://localhost:3000/api/public' : remote_api_path;
+
+    // this.adminUrl = (_.isEmpty(remote_admin_path)) ? 'http://localhost:4200' : remote_admin_path;
+
+    // this.env = (_.isEmpty(deployment_env)) ? 'local' : deployment_env;
+
+
+    // TODO: Won't work, needs to be changed.
+    // this.env = 'local'; // process.env.FOM_ENV || 'local';
+
     const { hostname } = window.location;
-    switch (hostname) {
-      case 'localhost':
-        // Local
-        this.apiPath = 'http://localhost:3000/api/public';
-        this.adminUrl = 'http://localhost:4200';
-        this.env = 'local';
-        break;
-
-      case 'nrts-prc-dev.pathfinder.gov.bc.ca':
-        // Dev
-        this.apiPath = 'https://nrts-prc-dev.pathfinder.gov.bc.ca/api/public';
-        this.adminUrl = 'https://nrts-prc-dev.pathfinder.gov.bc.ca/admin/';
-        this.env = 'dev';
-        break;
-
-      case 'nrts-prc-master.pathfinder.gov.bc.ca':
-        // Master
-        this.apiPath = 'https://nrts-prc-master.pathfinder.gov.bc.ca/api/public';
-        this.adminUrl = 'https://nrts-prc-master.pathfinder.gov.bc.ca/admin/';
-        this.env = 'master';
-        break;
-
-      case 'nrts-prc-test.pathfinder.gov.bc.ca':
-        // Test
-        this.apiPath = 'https://nrts-prc-test.pathfinder.gov.bc.ca/api/public';
-        this.adminUrl = 'https://nrts-prc-test.pathfinder.gov.bc.ca/admin/';
-        this.env = 'test';
-        break;
-
-      default:
-        // Prod
-        this.apiPath = 'https://comment.nrs.gov.bc.ca/api/public';
-        this.adminUrl = 'https://comment.nrs.gov.bc.ca/admin/';
-        this.env = 'prod';
+    if (hostname == 'localhost') {
+      this.apiPath = 'http://localhost:3333/api';
+    } else if (hostname.includes('nr-fom-public') && hostname.includes('devops.gov.bc.ca')) {
+      this.apiPath = 'https://'+hostname.replace('fom-public','fom-api'); 
+      if (!hostname.endsWith('/')) {
+        this.apiPath += '/';
+      }
+      this.apiPath += 'api';
+    } else {
+      // TODO: May need special case for production vanity URL, or implement solution for dynamically loading from a config map.
+      throwError('Unrecognized hostname ' + hostname + ' cannot infer API URL.');
     }
+
+    // TODO: Set correct admin URL, or remove from public footer.
+    // Old ACRFD prod settings:
+    // this.apiPath = 'https://comment.nrs.gov.bc.ca/api/public';
+    // this.adminUrl = 'https://comment.nrs.gov.bc.ca/admin/';
+
+    this.adminUrl = 'http://localhost:4200';
   }
 
   /**
