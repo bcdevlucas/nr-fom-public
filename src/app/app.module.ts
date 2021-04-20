@@ -15,7 +15,6 @@ import { HomeProxyComponent } from 'app/home-proxy.component';
 import { ApplicationsProxyComponent } from 'app/applications-proxy.component';
 import { AppComponent } from 'app/app.component';
 import { CommentModalComponent } from 'app/comment-modal/comment-modal.component';
-import { ConfirmComponent } from 'app/confirm/confirm.component';
 import { ContactComponent } from 'app/contact/contact.component';
 import { FileUploadComponent } from 'app/file-upload/file-upload.component';
 import { HeaderComponent } from 'app/header/header.component';
@@ -48,7 +47,6 @@ import { UrlService } from 'app/services/url.service';
     ApplicationsProxyComponent,
     AppComponent,
     CommentModalComponent,
-    ConfirmComponent,
     ContactComponent,
     FileUploadComponent,
     HeaderComponent,
