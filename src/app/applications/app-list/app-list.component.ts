@@ -31,9 +31,9 @@ export class AppListComponent implements OnInit, OnChanges, OnDestroy {
   constructor(
     public applicationService: ApplicationService,
     public commentPeriodService: CommentPeriodService // used in template
-  ) {}
+  ) { }
 
-  public ngOnInit() {}
+  public ngOnInit() { }
 
   // called when apps list changes
   public ngOnChanges(changes: SimpleChanges) {
@@ -73,7 +73,7 @@ export class AppListComponent implements OnInit, OnChanges, OnDestroy {
     this.ngUnsubscribe.complete();
   }
 
-  private isCurrentApp(item: Application): boolean {
+  public isCurrentApp(item: Application): boolean {
     return item === this.currentApp;
   }
 
