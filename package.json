@@ -51,7 +51,6 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "mygovbc-bootstrap-theme": "0.4.1",
-    "ng2-bootstrap-modal": "^1.0.1",
     "ngx-chips": "2.2.0",
     "ngx-text-overflow-clamp": "0.0.1",
     "node-sass": "^4.14.1",
