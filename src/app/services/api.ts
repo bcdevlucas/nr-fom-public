@@ -65,8 +65,26 @@ export class ApiService {
     // this.token = currentUser && currentUser.token;
     this.isMS = window.navigator.msSaveOrOpenBlob ? true : false;
 
+    // In index.html we load a javascript file with environment-specific settings, 
+    // populated from mounted ConfigMap in OpenShift. This file sets window.localStorage settings
+    // Locally, this will be empty and local defaults will be used.
+
+    const envName = window.localStorage.getItem('fom_environment_name');
+    this.env = (envName == undefined || envName.length == 0) ? 'local' : envName;
+
+    // const remote_admin_path = window.localStorage.getItem('from_public_server--remote_admin_path');
+
+    // const deployment_env = window.localStorage.getItem('from_public_server--deployment_env');
+
+    // this.apiPath = (_.isEmpty(remote_api_path)) ? 'http://localhost:3000/api/public' : remote_api_path;
+
+    // this.adminUrl = (_.isEmpty(remote_admin_path)) ? 'http://localhost:4200' : remote_admin_path;
+
+    // this.env = (_.isEmpty(deployment_env)) ? 'local' : deployment_env;
+
+
     // TODO: Won't work, needs to be changed.
-    this.env = 'local'; // process.env.FOM_ENV || 'local';
+    // this.env = 'local'; // process.env.FOM_ENV || 'local';
 
     const { hostname } = window.location;
     if (hostname == 'localhost') {
