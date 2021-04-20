@@ -6,7 +6,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-      "nrts-prc-public": {
+      "fom-public": {
         "root": "",
         "sourceRoot": "src",
         "projectType": "application",
@@ -62,19 +62,19 @@
           "serve": {
             "builder": "@angular-devkit/build-angular:dev-server",
             "options": {
-              "browserTarget": "nrts-prc-public:build",
+              "browserTarget": "fom-public:build",
               "port": 4300
             },
             "configurations": {
               "production": {
-                "browserTarget": "nrts-prc-public:build:production"
+                "browserTarget": "fom-public:build:production"
               }
             }
           },
           "extract-i18n": {
             "builder": "@angular-devkit/build-angular:extract-i18n",
             "options": {
-              "browserTarget": "nrts-prc-public:build"
+              "browserTarget": "fom-public:build"
             }
           },
           "test": {
@@ -118,7 +118,7 @@
           }
         }
       },
-      "nrts-prc-public-e2e": {
+      "fom-public-e2e": {
         "root": "e2e",
         "sourceRoot": "e2e",
         "projectType": "application",
@@ -127,7 +127,7 @@
             "builder": "@angular-devkit/build-angular:protractor",
             "options": {
               "protractorConfig": "./protractor.conf.js",
-              "devServerTarget": "nrts-prc-public:serve"
+              "devServerTarget": "fom-public:serve"
             }
           },
           "lint": {
@@ -142,7 +142,7 @@
         }
       }
     },
-    "defaultProject": "nrts-prc-public",
+    "defaultProject": "fom-public",
     "schematics": {
       "@schematics/angular:component": {
         "prefix": "app",
