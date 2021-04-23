@@ -57,7 +57,6 @@ export class ApiService {
   // public token: string;
   public isMS: boolean; // IE, Edge, etc
   public apiPath: string;
-  public adminUrl: string;
   public env: string;
 
   constructor(private http: HttpClient) {
@@ -71,20 +70,6 @@ export class ApiService {
 
     const envName = window.localStorage.getItem('fom_environment_name');
     this.env = (envName == undefined || envName.length == 0) ? 'local' : envName;
-
-    // const remote_admin_path = window.localStorage.getItem('from_public_server--remote_admin_path');
-
-    // const deployment_env = window.localStorage.getItem('from_public_server--deployment_env');
-
-    // this.apiPath = (_.isEmpty(remote_api_path)) ? 'http://localhost:3000/api/public' : remote_api_path;
-
-    // this.adminUrl = (_.isEmpty(remote_admin_path)) ? 'http://localhost:4200' : remote_admin_path;
-
-    // this.env = (_.isEmpty(deployment_env)) ? 'local' : deployment_env;
-
-
-    // TODO: Won't work, needs to be changed.
-    // this.env = 'local'; // process.env.FOM_ENV || 'local';
 
     const { hostname } = window.location;
     if (hostname == 'localhost') {
@@ -100,12 +85,6 @@ export class ApiService {
       throwError('Unrecognized hostname ' + hostname + ' cannot infer API URL.');
     }
 
-    // TODO: Set correct admin URL, or remove from public footer.
-    // Old ACRFD prod settings:
-    // this.apiPath = 'https://comment.nrs.gov.bc.ca/api/public';
-    // this.adminUrl = 'https://comment.nrs.gov.bc.ca/admin/';
-
-    this.adminUrl = 'http://localhost:4200';
   }
 
   /**

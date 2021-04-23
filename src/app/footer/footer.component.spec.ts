@@ -8,7 +8,7 @@ describe('FooterComponent', () => {
   let fixture: ComponentFixture<FooterComponent>;
 
   const apiServiceStub = {
-    adminUrl: 'http://localhost:4000/admin/'
+    // Empty
   };
 
   beforeEach(async(() => {
@@ -29,9 +29,4 @@ describe('FooterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('it renders a link to the admin page using the api service admin url', () => {
-    const adminLink = fixture.debugElement.nativeElement.querySelector('a.gtm-admin-login');
-    expect(adminLink.textContent).toContain('Admin Login');
-    expect(adminLink.getAttribute('href')).toContain('http://localhost:4000/admin/');
-  });
 });
