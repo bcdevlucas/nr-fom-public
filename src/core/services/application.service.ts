@@ -4,8 +4,8 @@ import { map, mergeMap, catchError } from 'rxjs/operators';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 
-import { Application } from 'app/models/application';
-import { ApiService, IQueryParamSet, QueryParamModifier } from './api';
+import { Application } from 'core/models/application';
+import { ApiService, IQueryParamSet, QueryParamModifier } from 'core/services/api';
 import { DocumentService } from './document.service';
 import { CommentPeriodService } from './commentperiod.service';
 import { DecisionService } from './decision.service';

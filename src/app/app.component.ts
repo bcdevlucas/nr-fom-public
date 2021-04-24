@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { ApiService } from './services/api';
+import { ApiService } from 'core/services/api';
 
 @Component({
   selector: 'app-root',

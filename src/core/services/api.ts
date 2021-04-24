@@ -4,13 +4,13 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, of, combineLatest, merge, throwError } from 'rxjs';
 import { map, mergeMap, toArray } from 'rxjs/operators';
 
-import { Application } from 'app/models/application';
-import { Comment } from 'app/models/comment';
-import { CommentPeriod } from 'app/models/commentperiod';
-import { Decision } from 'app/models/decision';
-import { Document } from 'app/models/document';
-import { Feature } from 'app/models/feature';
-import { User } from 'app/models/user';
+import { Application } from 'core/models/application';
+import { Comment } from 'core/models/comment';;
+import { CommentPeriod } from 'core/models/CommentPeriod';
+import { Decision } from 'core/models/Decision';
+import { Document } from 'core/models/Document';
+import { Feature } from 'core/models/Feature';
+import { User } from 'core/models/User';
 
 /**
  * Supported query param field modifiers used by the api to interpret the query param value.

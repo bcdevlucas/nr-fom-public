@@ -1,5 +1,5 @@
 
-import { Document } from 'app/models/document';
+import { Document } from 'core/models/Document';
 
 export const singleDocumentStub: Document =
          new Document(

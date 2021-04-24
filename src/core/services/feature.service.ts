@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { ApiService } from './api';
-import { Feature } from 'app/models/feature';
+import { ApiService } from 'core/services/api';
+import { Feature } from 'core/models/Feature';
 
 @Injectable()
 export class FeatureService {

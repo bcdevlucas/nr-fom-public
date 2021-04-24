@@ -3,11 +3,11 @@ import { Observable, of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import * as _ from 'lodash';
 
-import { ApiService } from './api';
+import { ApiService } from 'core/services/api';
 import { CommentPeriodService } from './commentperiod.service';
 import { DocumentService } from './document.service';
-import { Comment } from 'app/models/comment';
-import { CommentPeriod } from 'app/models/commentperiod';
+import { Comment } from 'core/models/comment';;
+import { CommentPeriod } from 'core/models/CommentPeriod';
 
 @Injectable()
 export class CommentService {

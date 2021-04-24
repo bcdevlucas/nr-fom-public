@@ -2,11 +2,11 @@ import { Component, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { UrlService } from 'app/services/url.service';
+import { UrlService } from 'core/services/url.service';
 import { Filter, FilterUtils } from '../utils/filter';
 import { Panel } from '../utils/panel.enum';
 import { IUpdateEvent } from '../applications.component';
-import { IFiltersType } from 'app/services/application.service';
+import { IFiltersType } from 'core/services/application.service';
 
 /**
  * Find side panel.

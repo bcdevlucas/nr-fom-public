@@ -22,14 +22,14 @@ import { AboutComponent } from 'app/about/about.component';
 import { FooterComponent } from 'app/footer/footer.component';
 
 // services
-import { ApiService } from 'app/services/api';
-import { ApplicationService } from 'app/services/application.service';
-import { CommentService } from 'app/services/comment.service';
-import { CommentPeriodService } from 'app/services/commentperiod.service';
-import { DecisionService } from 'app/services/decision.service';
-import { DocumentService } from 'app/services/document.service';
-import { FeatureService } from 'app/services/feature.service';
-import { UrlService } from 'app/services/url.service';
+import { ApiService } from 'core/services/api';
+import { ApplicationService } from 'core/services/application.service';
+import { CommentService } from 'core/services/comment.service';
+import { CommentPeriodService } from 'core/services/commentperiod.service';
+import { DecisionService } from 'core/services/decision.service';
+import { DocumentService } from 'core/services/document.service';
+import { FeatureService } from 'core/services/feature.service';
+import { UrlService } from 'core/services/url.service';
 
 @NgModule({
   imports: [

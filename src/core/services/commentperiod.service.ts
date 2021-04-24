@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { ApiService } from './api';
-import { CommentPeriod } from 'app/models/commentperiod';
+import { ApiService } from 'core/services/api';
+import { CommentPeriod } from 'core/models/CommentPeriod';
 import { CommentCodes } from 'app/utils/constants/comment';
 import { ConstantUtils, CodeType } from 'app/utils/constants/constantUtils';
 

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { ApiService } from './api';
-import { Document } from 'app/models/document';
+import { ApiService } from 'core/services/api';
+import { Document } from 'core/models/Document';
 
 @Injectable()
 export class DocumentService {
