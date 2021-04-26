@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { throwError } from 'rxjs';
 
 // modules
 import { SharedModule } from 'app/shared.module';
@@ -30,6 +33,43 @@ import { DecisionService } from 'core/services/decision.service';
 import { DocumentService } from 'core/services/document.service';
 import { FeatureService } from 'core/services/feature.service';
 import { UrlService } from 'core/services/url.service';
+import { KeycloakService } from 'core/services/keycloak.service';
+
+import { ApiModule, Configuration } from 'core/api';
+
+export function kcFactory(keycloakService: KeycloakService) {
+  return () => keycloakService.init();
+}
+
+// this.jwtHelper = new JwtHelperService();
+const currentUser = JSON.parse(window.localStorage.getItem('currentUser'));
+// @ts-ignore
+const token = currentUser && currentUser.token;
+// @ts-ignore
+const isMS = !!window.navigator.msSaveOrOpenBlob;
+
+// In index.html we load a javascript file with environment-specific settings,
+// populated from mounted ConfigMap in OpenShift. This file sets window.localStorage settings
+// Locally, this will be empty and local defaults will be used.
+
+const envName = window.localStorage.getItem('fom_environment_name');
+// @ts-ignore
+const env = (envName == undefined || envName.length == 0) ? 'local' : envName;
+let apiBasePath;
+
+const { hostname } = window.location;
+if (hostname == 'localhost') {
+  apiBasePath = 'http://localhost:4300';
+} else if (hostname.includes('nr-fom-public') && hostname.includes('devops.gov.bc.ca')) {
+  apiBasePath = 'https://' + hostname.replace('fom-admin', 'fom-api');
+} else {
+  // TODO: May need special case for production vanity URL, or implement solution for dynamically loading from a config map.
+  throwError('Unrecognized hostname ' + hostname + ' cannot infer API URL.');
+}
+
+const apiConfig = new Configuration({
+  basePath: apiBasePath
+});
 
 @NgModule({
   imports: [
@@ -37,10 +77,14 @@ import { UrlService } from 'core/services/url.service';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     NgbModule,
+    ApiModule.forRoot(() => apiConfig),
     SharedModule,
     ApplicationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RxReactiveFormsModule,
+    LeafletModule
   ],
   declarations: [
     HomeProxyComponent,
@@ -65,9 +109,14 @@ import { UrlService } from 'core/services/url.service';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
 
-export function easingLogic(t: number, b: number, c: number, d: number): number {
+export function easingLogic(
+  t: number,
+  b: number,
+  c: number,
+  d: number
+): number {
   // easeInOutExpo easing
   if (t === 0) {
     return b;
