@@ -59,7 +59,7 @@ let apiBasePath;
 
 const { hostname } = window.location;
 if (hostname == 'localhost') {
-  apiBasePath = 'http://localhost:4300';
+  apiBasePath = 'http://localhost:3333';
 } else if (hostname.includes('nr-fom-public') && hostname.includes('devops.gov.bc.ca')) {
   apiBasePath = 'https://' + hostname.replace('fom-admin', 'fom-api');
 } else {
