@@ -11,9 +11,9 @@ import { CommentPeriodService } from './commentperiod.service';
 import { DecisionService } from './decision.service';
 import { FeatureService } from './feature.service';
 
-import { StatusCodes, ReasonCodes } from 'app/utils/constants/application';
-import { ConstantUtils, CodeType } from 'app/utils/constants/constantUtils';
-import { CommentCodes } from 'app/utils/constants/comment';
+import { StatusCodes, ReasonCodes } from 'core/utils/constants/application';
+import { ConstantUtils, CodeType } from 'core/utils/constants/constantUtils';
+import { CommentCodes } from 'core/utils/constants/comment';
 import { singleApplicationStub } from 'app/applications/stubs/application-stub';
 import { singleDocumentStubArray } from 'app/applications/stubs/document-stub';
 import { singleFeatureStubArray } from 'app/applications/stubs/feature-stub';

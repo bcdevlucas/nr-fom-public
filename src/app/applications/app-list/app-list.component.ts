@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 import { Application } from 'core/models/application';
 import { ApplicationService } from 'core/services/application.service';
 import { CommentPeriodService } from 'core/services/commentperiod.service'
-import { ConstantUtils, CodeType } from 'app/utils/constants/constantUtils';
+import { ConstantUtils, CodeType } from 'core/utils/constants/constantUtils';
 
 const LIST_PAGE_SIZE = 10;
 

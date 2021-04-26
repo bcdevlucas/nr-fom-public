@@ -4,8 +4,8 @@ import { map, catchError } from 'rxjs/operators';
 
 import { ApiService } from 'core/services/api';
 import { CommentPeriod } from 'core/models/CommentPeriod';
-import { CommentCodes } from 'app/utils/constants/comment';
-import { ConstantUtils, CodeType } from 'app/utils/constants/constantUtils';
+import { CommentCodes } from 'core/utils/constants/comment';
+import { ConstantUtils, CodeType } from 'core/utils/constants/constantUtils';
 
 @Injectable()
 export class CommentPeriodService {
