@@ -11,6 +11,5 @@ function CreatePublicFrontEnd {
     oc process -f fom-public-deploy.yml -p ENV=$Env -p TAG=$Suffix -p HOSTNAME="nr-fom-public-$Suffix-$Env" -p IMAGE_STREAM_VERSION=$ApiVersion | oc create -n a4b31c-$Env -f -
 }
 
-CreatePublicFrontEnd -Suffix "demo" -Env "dev" -ApiVersion "demo" 
 CreatePublicFrontEnd -Suffix "main" -Env "dev" -ApiVersion "main" 
 CreatePublicFrontEnd -Suffix "working" -Env "dev" -ApiVersion "dev" 
