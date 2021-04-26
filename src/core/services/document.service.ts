@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { ApiService } from 'core/services/api';
-import { Document } from 'core/models/Document';
+import { Document } from 'core/models/document';
 
 @Injectable()
 export class DocumentService {

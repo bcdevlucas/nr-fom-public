@@ -7,7 +7,7 @@ import { ApiService } from 'core/services/api';
 import { CommentPeriodService } from './commentperiod.service';
 import { DocumentService } from './document.service';
 import { Comment } from 'core/models/comment';;
-import { CommentPeriod } from 'core/models/CommentPeriod';
+import { CommentPeriod } from 'core/models/commentperiod';
 
 @Injectable()
 export class CommentService {

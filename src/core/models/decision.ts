@@ -1,4 +1,4 @@
-import { Document } from 'core/models/Document';
+import { Document } from 'core/models/document';
 
 export class Decision {
   _id: string;

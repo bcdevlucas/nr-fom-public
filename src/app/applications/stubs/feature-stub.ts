@@ -1,4 +1,4 @@
-import { Feature } from 'core/models/Feature';
+import { Feature } from 'core/models/feature';
 
 export const singleFeatureStub: Feature =
          new Feature(

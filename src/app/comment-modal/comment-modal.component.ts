@@ -4,8 +4,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Comment } from 'core/models/comment';;
-import { Document } from 'core/models/Document';
-import { CommentPeriod } from 'core/models/CommentPeriod';
+import { Document } from 'core/models/document';
+import { CommentPeriod } from 'core/models/commentperiod';
 import { CommentService } from 'core/services/comment.service';
 import { DocumentService } from 'core/services/document.service';
 

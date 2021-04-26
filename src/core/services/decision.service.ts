@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 
 import { ApiService } from 'core/services/api';
-import { Decision } from 'core/models/Decision';
+import { Decision } from 'core/models/decision';
 import { DocumentService } from './document.service';
 
 @Injectable()

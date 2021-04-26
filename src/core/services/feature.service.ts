@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { ApiService } from 'core/services/api';
-import { Feature } from 'core/models/Feature';
+import { Feature } from 'core/models/feature';
 
 @Injectable()
 export class FeatureService {

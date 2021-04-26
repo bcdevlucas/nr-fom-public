@@ -5,12 +5,12 @@ import { Observable, of, combineLatest, merge, throwError } from 'rxjs';
 import { map, mergeMap, toArray } from 'rxjs/operators';
 
 import { Application } from 'core/models/application';
-import { Comment } from 'core/models/comment';;
-import { CommentPeriod } from 'core/models/CommentPeriod';
-import { Decision } from 'core/models/Decision';
-import { Document } from 'core/models/Document';
-import { Feature } from 'core/models/Feature';
-import { User } from 'core/models/User';
+import { Comment } from 'core/models/comment';
+import { CommentPeriod } from 'core/models/commentperiod';
+import { Decision } from 'core/models/decision';
+import { Document } from 'core/models/document';
+import { Feature } from 'core/models/feature';
+import { User } from 'core/models/user';
 
 /**
  * Supported query param field modifiers used by the api to interpret the query param value.
