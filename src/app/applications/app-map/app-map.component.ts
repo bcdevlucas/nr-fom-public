@@ -18,9 +18,9 @@ import 'leaflet';
 import 'leaflet.markercluster';
 import * as _ from 'lodash';
 
-import { Application } from 'app/models/application';
-import { ApplicationService } from 'app/services/application.service';
-import { UrlService } from 'app/services/url.service';
+import { Application } from 'core/models/application';
+import { ApplicationService } from 'core/services/application.service';
+import { UrlService } from 'core/services/url.service';
 import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
 
 declare module 'leaflet' {

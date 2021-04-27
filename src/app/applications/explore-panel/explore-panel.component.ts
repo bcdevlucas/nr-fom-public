@@ -4,12 +4,12 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import * as moment from 'moment';
 
-import { ApplicationService, IFiltersType } from 'app/services/application.service';
-import { CommentPeriodService } from 'app/services/commentperiod.service';
-import { UrlService } from 'app/services/url.service';
+import { ApplicationService, IFiltersType } from 'core/services/application.service';
+import { CommentPeriodService } from 'core/services/commentperiod.service'
+import { UrlService } from 'core/services/url.service';
 
-import { StatusCodes } from 'app/utils/constants/application';
-import { CommentCodes } from 'app/utils/constants/comment';
+import { StatusCodes } from 'core/utils/constants/application';
+import { CommentCodes } from 'core/utils/constants/comment';
 import { Filter, MultiFilter, IMultiFilterFields, FilterUtils } from '../utils/filter';
 import { IUpdateEvent } from '../applications.component';
 

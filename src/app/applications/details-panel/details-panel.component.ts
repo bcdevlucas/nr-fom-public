@@ -4,11 +4,11 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { CommentModalComponent } from 'app/comment-modal/comment-modal.component';
-import { Application } from 'app/models/application';
-import { ApplicationService } from 'app/services/application.service';
-import { CommentPeriodService } from 'app/services/commentperiod.service';
-import { ApiService } from 'app/services/api';
-import { UrlService } from 'app/services/url.service';
+import { Application } from 'core/models/application';
+import { ApplicationService } from 'core/services/application.service';
+import { CommentPeriodService } from 'core/services/commentperiod.service'
+import { ApiService } from 'core/services/api';
+import { UrlService } from 'core/services/url.service';
 import { Filter } from '../utils/filter';
 import { singleApplicationStub } from 'app/applications/stubs/application-stub';
 

@@ -13,9 +13,9 @@ import { FindPanelComponent } from './find-panel/find-panel.component';
 import { ExplorePanelComponent } from './explore-panel/explore-panel.component';
 import { DetailsPanelComponent } from './details-panel/details-panel.component';
 import { SplashModalComponent } from './splash-modal/splash-modal.component';
-import { Application } from 'app/models/application';
-import { ApplicationService, IFiltersType } from 'app/services/application.service';
-import { UrlService } from 'app/services/url.service';
+import { Application } from 'core/models/application';
+import { ApplicationService, IFiltersType } from 'core/services/application.service';
+import { UrlService } from 'core/services/url.service';
 import { Panel } from './utils/panel.enum';
 import { singleApplicationStubArray } from './stubs/application-stub';
 

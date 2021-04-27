@@ -1,7 +1,7 @@
 import { Component, OnDestroy, Input, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
 
-import { Application } from 'app/models/application';
+import { Application } from 'core/models/application';
 
 @Component({
   selector: 'app-details-map',

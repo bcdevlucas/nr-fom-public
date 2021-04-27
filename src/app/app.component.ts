@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { ApiService } from './services/api';
+import { ApiService } from 'core/services/api';
+import { StateService } from 'core/services/state.service';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +14,11 @@ import { ApiService } from './services/api';
 export class AppComponent implements OnInit, OnDestroy {
   isSafari: boolean;
   hostname: string;
+  isReady$: Observable<boolean>;
+
   private ngUnsubscribe: Subject<boolean> = new Subject<boolean>();
 
-  constructor(public router: Router, private api: ApiService) {
+  constructor(public router: Router, private api: ApiService, private stateSvc: StateService) {
     // ref: https://stackoverflow.com/questions/5899783/detect-safari-using-jquery
     this.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
@@ -23,11 +26,16 @@ export class AppComponent implements OnInit, OnDestroy {
     this.hostname = this.api.apiPath; // TODO: Wrong
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.router.events.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => {
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     });
+
+    const codeTables = await this.stateSvc.getCodeTables().toPromise();
+    this.stateSvc.setCodeTables(codeTables);
+    this.stateSvc.setReady();
+    this.isReady$ = this.stateSvc.isReady$;
   }
 
   ngOnDestroy() {

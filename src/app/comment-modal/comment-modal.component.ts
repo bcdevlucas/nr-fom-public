@@ -3,11 +3,11 @@ import { Component, Input, HostListener, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Comment } from 'app/models/comment';
-import { Document } from 'app/models/document';
-import { CommentPeriod } from 'app/models/commentperiod';
-import { CommentService } from 'app/services/comment.service';
-import { DocumentService } from 'app/services/document.service';
+import { Comment } from 'core/models/comment';;
+import { Document } from 'core/models/document';
+import { CommentPeriod } from 'core/models/commentperiod';
+import { CommentService } from 'core/services/comment.service';
+import { DocumentService } from 'core/services/document.service';
 
 @Component({
   templateUrl: './comment-modal.component.html',
