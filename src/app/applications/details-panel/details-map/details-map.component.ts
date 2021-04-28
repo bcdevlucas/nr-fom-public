@@ -9,6 +9,7 @@ import { Application } from 'core/models/application';
   styleUrls: ['./details-map.component.scss']
 })
 export class DetailsMapComponent implements OnChanges, OnDestroy {
+
   @Input() application: Application = null;
 
   public map: L.Map;
@@ -37,7 +38,8 @@ export class DetailsMapComponent implements OnChanges, OnDestroy {
 
   // map imagery definition
   public World_Imagery = L.tileLayer(
-    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    `https://maps.gov.bc.ca/arcserver/rest/services/Province/roads_wm/MapServer/tile/{z}/{y}/{x}?env=${window.location.hostname}`,
+    //'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     {
       attribution:
         // eslint-disable-next-line max-len
@@ -99,6 +101,98 @@ export class DetailsMapComponent implements OnChanges, OnDestroy {
   }
 
   public addFeatures() {
+    // TODO: Load from API via /api/project/spatialDetails/{project id}
+    // Probably an input into this component (see "@Input application" near the top)
+    // TODO: Change type to ProjectDto or equivalent once client library set up.
+    var projectSpatialDetails: any;
+    projectSpatialDetails = [
+      {
+        "object_id": 201,
+        "source_table": "road_section",
+        "name": "my road",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -119.407238027,
+              49.818125858
+            ],
+            [
+              -119.398388707,
+              49.814400394
+            ],
+            [
+              -119.393090842,
+              49.812800566
+            ]
+          ]
+        },
+        "planned_development_date": "2021-04-23T06:00:00.000Z",
+        "planned_area_ha": null,
+        "planned_length_km": 1.1807126,
+        "submission_type_code": "PROPOSED",
+        "project_id": 1,
+        "submission_type": {
+          "code": "PROPOSED",
+          "description": "Proposed"
+        }
+      },
+      {
+        "object_id": 200,
+        "source_table": "cut_block",
+        "name": "my cut block",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -119.397280854,
+                49.815298833
+              ],
+              [
+                -119.394459294,
+                49.815127941
+              ],
+              [
+                -119.394863101,
+                49.812334408
+              ],
+              [
+                -119.39768449,
+                49.812505292
+              ],
+              [
+                -119.397280854,
+                49.815298833
+              ]
+            ]
+          ]
+        },
+        "planned_development_date": "2021-04-22T06:00:00.000Z",
+        "planned_area_ha": 6.3648,
+        "planned_length_km": 0,
+        "submission_type_code": "PROPOSED",
+        "project_id": 1,
+        "submission_type": {
+          "code": "PROPOSED",
+          "description": "Proposed"
+        }
+      }
+    ];
+
+    if (this.map) {
+      projectSpatialDetails.forEach(spatialDetail => {
+        const layer = L.geoJSON(spatialDetail.geometry);
+        this.appFG.addLayer(layer);
+        this.map.on('zoomend', () => {
+          // var weight = this.getWeight(cutBlock.plannedAreaHa, this.map.getZoom());
+          var weight = 8; // TODO: Hardcode.
+          layer.setStyle({ weight });
+        });
+      });
+      this.map.addLayer(this.appFG);
+    }
+/*
     if (this.map && this.application) {
       this.application.features.forEach(f => {
         const feature = JSON.parse(JSON.stringify(f));
@@ -113,6 +207,7 @@ export class DetailsMapComponent implements OnChanges, OnDestroy {
       });
       this.map.addLayer(this.appFG);
     }
+*/
   }
 
   // to avoid timing conflict with animations (resulting in small map tile at top left of page),

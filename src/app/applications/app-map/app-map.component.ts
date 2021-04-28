@@ -189,6 +189,7 @@ export class AppMapComponent implements AfterViewInit, OnChanges, OnDestroy {
       }
     );
 
+    // TODO: Throws error - Map container is already initialized.
     this.map = L.map('map', {
       zoomControl: false, // will be added manually below
       maxBounds: L.latLngBounds(L.latLng(-90, -180), L.latLng(90, 180)), // restrict view to "the world"
